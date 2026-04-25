@@ -23,11 +23,11 @@ const FloatingDust = (props: any) => {
       <Points positions={sphereBlack as Float32Array} stride={3} frustumCulled={false} {...props}>
         <PointMaterial
           transparent
-          color="#111111" // Rich Black
+          color="#777777" // Sophisticated Grey
           size={0.012} 
           sizeAttenuation={true}
           depthWrite={false}
-          opacity={0.7} 
+          opacity={0.6} 
         />
       </Points>
       {/* Grey particles */}

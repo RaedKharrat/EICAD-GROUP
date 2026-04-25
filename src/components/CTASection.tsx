@@ -11,21 +11,21 @@ interface CTASectionProps {
   bgImage?: string;
 }
 
-export default function CTASection({ 
-  preTitle, 
-  title, 
-  description, 
-  buttonText, 
+export default function CTASection({
+  preTitle,
+  title,
+  description,
+  buttonText,
   buttonHref,
   bgImage = "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c"
 }: CTASectionProps) {
   return (
     <section className={styles.cta}>
-      <Image 
-        src={bgImage} 
-        alt="" 
-        fill 
-        sizes="100vw" 
+      <Image
+        src={bgImage}
+        alt=""
+        fill
+        sizes="100vw"
         className={styles.bgImage}
       />
       <div className={styles.overlay}></div>
@@ -36,11 +36,14 @@ export default function CTASection({
           <p>{description}</p>
           <Link href={buttonHref} className={styles.ctaBtn}>
             {buttonText}
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <line x1="5" y1="12" x2="19" y2="12"></line>
-              <polyline points="12 5 19 12 12 19"></polyline>
-            </svg>
           </Link>
+        </div>
+        
+        <div className={styles.ctaSideArrow}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="0.5">
+            <line x1="5" y1="12" x2="19" y2="12" />
+            <polyline points="13 6 19 12 13 18" />
+          </svg>
         </div>
       </div>
     </section>
