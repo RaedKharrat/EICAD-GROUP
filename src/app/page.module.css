@@ -1,142 +1,441 @@
-.page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
-}
-
 .main {
-  display: flex;
-  flex: 1;
   width: 100%;
-  max-width: 800px;
+  overflow-x: hidden;
+  background-color: #fcfdff;
+}
+
+/* ─── Hero Section ─── */
+.hero {
+  position: relative;
+  padding-top: 110px;
+  padding-bottom: 40px;
+}
+
+.heroContainer {
+  position: relative;
+  z-index: 1;
+  display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 0;
+}
+
+.heroTopGrid {
+  display: flex;
   justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  align-items: flex-end;
+  gap: 2rem;
+  padding-bottom: 2rem;
+  position: sticky;
+  top: 80px;
+  width: 100%;
+  z-index: 1500;
+  pointer-events: none;
 }
 
-.intro {
+.heroTopGrid > * {
+  pointer-events: auto;
+}
+
+.heroRightContent {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  align-items: flex-end;
+  gap: 3rem;
+  padding-bottom: 1rem;
+  position: relative;
+  z-index: 1500;
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
-}
-
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
-}
-
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.arrowCircleWrapper {
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
+  justify-content: flex-start;
 }
 
-.ctas a {
+.arrowCircle {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.08);
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  background: white;
+  transition: all 0.4s ease;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.arrowCircle:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 30px rgba(212, 175, 55, 0.12);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.arrowCircle svg {
+  width: 32px;
+  height: 32px;
+  color: var(--text-main);
+  opacity: 0.6;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
+.titleWrapper {
+  text-align: left;
+  position: relative;
+  z-index: 1500;
+}
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+.mainTitle {
+  font-size: clamp(3rem, 8vw, 7rem);
+  line-height: 0.88;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  font-family: var(--font-outfit), sans-serif;
+  color: var(--text-main);
+  white-space: nowrap;
+  position: relative;
+  z-index: 1500;
+}
+
+.sideDescWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sideDesc {
+  max-width: 240px;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-align: right;
+  font-weight: 400;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  margin-top: -1rem;
+  z-index: 1;
+}
+
+.heroImageContainer {
+  position: relative;
+  width: 100%;
+  height: 65vh;
+  min-height: 420px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.12);
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+/* ─── Projects Section ─── */
+.projectsSection {
+  padding: 8rem 0;
+  background-color: #fcfdff;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+  gap: 3rem;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 4rem);
+  line-height: 1;
+  font-weight: 300;
+  font-family: var(--font-outfit), sans-serif;
+  text-transform: uppercase;
+  color: var(--text-main);
+}
+
+.sectionDesc {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: flex-start;
+  max-width: 360px;
+}
+
+.sectionDesc p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.exploreLink svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+
+.exploreLink:hover {
+  color: var(--accent);
+}
+
+.exploreLink:hover svg {
+  transform: translateX(4px);
+}
+
+.projectsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.projectCard {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.projectImage {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.projectImage img {
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.projectCard:hover .projectImage img {
+  transform: scale(1.06);
+}
+
+/* ─── Services / Bento Section (BLACK BG) ─── */
+.bentoSection {
+  padding: 8rem 0;
+  background-color: #050505;
+  color: #ffffff;
+}
+
+.bentoSectionHeader {
+  margin-bottom: 4rem;
+}
+
+.bentoSectionTitle {
+  font-size: clamp(1.8rem, 4vw, 3.5rem);
+  line-height: 1;
+  font-weight: 300;
+  font-family: var(--font-outfit), sans-serif;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.bentoGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 300px;
+  gap: 0.75rem;
+}
+
+.bentoItem {
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 2rem 2rem;
+  background-color: #151515;
+  border-radius: 20px;
+  transition: transform 0.4s ease;
+}
+
+.bentoItem:hover {
+  transform: translateY(-4px);
+}
+
+.bentoLarge {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.bentoWide {
+  grid-column: span 3;
+}
+
+/* Accent Card (Online Consulting - Gold with Image) */
+.bentoAccent {
+  background-color: var(--accent) !important;
+  color: var(--primary);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.bentoAccent:hover {
+  background-color: #e8be3a !important;
+}
+
+.bentoAccent .bentoContent h3 {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.bentoAccentOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(212, 175, 55, 0.82);
+  z-index: 1;
+  transition: background 0.4s ease;
+}
+
+.bentoAccent:hover .bentoAccentOverlay {
+  background: rgba(212, 175, 55, 0.72);
+}
+
+.bentoBg {
+  object-fit: cover;
+  z-index: 0;
+  opacity: 0.5;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.bentoItem:hover .bentoBg {
+  opacity: 0.7;
+  transform: scale(1.05);
+}
+
+.bentoOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 60%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+.bentoContent {
+  position: relative;
+  z-index: 2;
+}
+
+.bentoContent h3 {
+  font-size: 1.6rem;
+  font-family: var(--font-outfit), sans-serif;
+  text-transform: uppercase;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.4rem;
+}
+
+.bentoLarge .bentoContent h3 {
+  font-size: 2.5rem;
+}
+
+.bentoContent p {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  line-height: 1.5;
+}
+
+.bentoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.bentoLink svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s ease;
+}
+
+.bentoLink:hover {
+  color: var(--accent);
+}
+
+.bentoLink:hover svg {
+  transform: translateX(4px);
+}
+
+.bentoAccentLink {
+  composes: bentoLink;
+  color: var(--primary);
+}
+
+.bentoAccentLink:hover {
+  color: #172a45;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .heroTopGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .arrowCircleWrapper {
+    display: none;
+  }
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .projectsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bentoGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bentoLarge {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  .bentoWide {
+    grid-column: span 2;
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@media (max-width: 768px) {
+  .heroTopGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-
-  .intro {
-    gap: 16px;
+  .sideDescWrapper {
+    justify-content: flex-start;
   }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  .heroImageContainer {
+    height: 50vh;
+    border-radius: 20px;
   }
-}
-
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .projectsGrid {
+    grid-template-columns: 1fr;
   }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+  .bentoGrid {
+    grid-template-columns: 1fr;
+  }
+  .bentoLarge, .bentoWide {
+    grid-column: span 1;
+    grid-row: span 1;
   }
 }

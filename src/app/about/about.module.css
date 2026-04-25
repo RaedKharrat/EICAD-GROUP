@@ -1,0 +1,215 @@
+.main {
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #fcfdff;
+}
+
+/* About Hero - Panoramic Layout */
+.hero {
+  position: relative;
+  padding-top: 150px;
+  padding-bottom: 80px;
+}
+
+.heroHeader {
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.preTitle {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+}
+
+.mainTitle {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: 0.9;
+  font-weight: 300;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-family: var(--font-outfit), sans-serif;
+  color: var(--text-main);
+  text-align: left;
+}
+
+.heroImageWrapper {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  min-height: 500px;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px -20px rgba(0,0,0,0.15);
+}
+
+.heroImage {
+  object-fit: cover;
+}
+
+.heroFloatingCard {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 450px;
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 3.5rem;
+  border-top-left-radius: 30px;
+}
+
+.heroFloatingCard p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #cccccc;
+  font-weight: 300;
+}
+
+/* Philosophy Section */
+.philosophy {
+  padding: 8rem 0;
+  background-color: white;
+}
+
+.philosophyGrid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 5rem;
+  align-items: flex-start;
+}
+
+.philosophyTitle {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+  line-height: 0.9;
+  font-weight: 300;
+  text-transform: uppercase;
+  font-family: var(--font-outfit), sans-serif;
+  color: var(--text-main);
+  margin-bottom: 2rem;
+  letter-spacing: -0.03em;
+  text-align: left;
+}
+
+.philosophyContent h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1;
+  font-family: var(--font-outfit), sans-serif;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.philosophyContent p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+  max-width: 550px;
+}
+
+.philosophyStats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  padding: 2.5rem;
+  background-color: var(--surface-color);
+  border-radius: 20px;
+}
+
+.statItem h3 {
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--primary);
+  font-family: var(--font-outfit), sans-serif;
+  margin-bottom: 0.3rem;
+}
+
+.statItem p {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+
+/* Pillars Section */
+.pillarsSection {
+  padding: 8rem 0;
+  background-color: #050505;
+  color: white;
+}
+
+.sectionTitle {
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 0.9;
+  text-transform: uppercase;
+  font-family: var(--font-outfit), sans-serif;
+  margin-bottom: 4rem;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.pillarCard {
+  padding: 2.5rem;
+  background-color: #111;
+  border-radius: 20px;
+  transition: transform 0.3s ease;
+}
+
+.pillarCard:hover {
+  transform: translateY(-8px);
+}
+
+.pillarIcon {
+  font-size: 1rem;
+  font-family: var(--font-outfit), sans-serif;
+  color: var(--accent);
+  margin-bottom: 1.5rem;
+  opacity: 0.5;
+}
+
+.pillarCard h3 {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+}
+
+.pillarCard p {
+  color: #999999;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+
+@media (max-width: 1024px) {
+  .heroFloatingCard {
+    max-width: 380px;
+    padding: 2.5rem;
+  }
+  .philosophyGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroImageWrapper {
+    min-height: 400px;
+  }
+  .heroFloatingCard {
+    position: relative;
+    max-width: 100%;
+    border-radius: 0;
+  }
+  .statItem h3 {
+    font-size: 2.5rem;
+  }
+}

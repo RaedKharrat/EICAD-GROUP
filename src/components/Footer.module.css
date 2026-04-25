@@ -1,0 +1,81 @@
+.footer {
+  background-color: var(--primary);
+  color: #ffffff;
+  padding: 4rem 0 0 0;
+}
+
+.footerContainer {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3rem;
+}
+
+.brand h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.brand span {
+  color: var(--accent);
+  font-weight: 300;
+}
+
+.brand p {
+  color: #a0aec0;
+  line-height: 1.6;
+  max-width: 300px;
+}
+
+.links h3, .contact h3 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.links h3::after, .contact h3::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40px;
+  height: 2px;
+  background-color: var(--accent);
+}
+
+.links ul {
+  list-style: none;
+}
+
+.links li {
+  margin-bottom: 0.8rem;
+}
+
+.links a {
+  color: #a0aec0;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: var(--accent);
+}
+
+.contact p {
+  color: #a0aec0;
+  margin-bottom: 0.5rem;
+}
+
+.copyright {
+  text-align: center;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: #a0aec0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .footerContainer {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

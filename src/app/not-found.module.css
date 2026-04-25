@@ -1,0 +1,44 @@
+.notFoundContainer {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bg-color);
+  text-align: center;
+  padding: 0 2rem;
+}
+
+.content {
+  max-width: 600px;
+  animation: fadeIn 0.8s ease-in-out forwards;
+}
+
+.content h1 {
+  font-size: clamp(6rem, 15vw, 12rem);
+  line-height: 1;
+  font-weight: 300;
+  color: var(--accent);
+  font-family: var(--font-outfit), sans-serif;
+  margin-bottom: 1rem;
+}
+
+.content h2 {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  font-family: var(--font-outfit), sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.content p {
+  color: var(--text-muted);
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
