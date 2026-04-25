@@ -1,64 +1,146 @@
 .main {
-  padding-top: 140px;
-  padding-bottom: 80px;
-  background-color: var(--bg-color);
-  min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+  background-color: #000;
+  color: #fff;
 }
 
+/* Projects Header - Massive Asimovian */
 .header {
-  margin-bottom: 4rem;
+  padding-top: 180px;
+  padding-bottom: 6rem;
+  background-color: #000;
 }
 
-.header h1 {
-  font-size: clamp(4rem, 8vw, 7rem);
-  line-height: 0.9;
-  font-weight: 300;
-  font-family: var(--font-outfit), sans-serif;
-  color: var(--text-main);
+.mainTitle {
+  font-size: clamp(4rem, 15vw, 12rem);
+  line-height: 0.85;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-family: var(--font-asimovian), sans-serif;
+  color: #ffffff;
+  margin-bottom: 2rem;
+}
+
+.preTitle {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  color: var(--primary);
+  margin-bottom: 2rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+}
+
+/* Panoramic Gallery - Edge to Edge */
+.gallerySection {
+  padding: 0;
+  border-top: 1px solid rgba(255,255,255,0.1);
 }
 
 .galleryGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(4, 1fr);
+  width: 100%;
+  height: 80vh;
+  min-height: 600px;
+  gap: 0;
 }
 
 .projectCard {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  animation: slideUp 0.6s ease-out forwards;
-  opacity: 0;
+  height: 100%;
+  border-right: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: pointer;
+}
+
+.projectCard:last-child {
+  border-right: none;
+}
+
+.projectCard:hover {
+  flex-grow: 1.5; /* If using flex, but we are in grid. Let's use a different trick or keep it simple but powerful */
+  background-color: #111;
 }
 
 .imageWrapper {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 4/3;
-  overflow: hidden;
-  background-color: var(--surface-color);
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  transition: transform 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.projectCard:hover .imageWrapper {
+  transform: scale(1.05);
 }
 
 .imageWrapper img {
   object-fit: cover;
-  transition: transform 0.5s ease;
+  opacity: 0.6;
+  filter: grayscale(100%) contrast(1.1);
+  transition: all 0.8s ease;
 }
 
 .projectCard:hover .imageWrapper img {
-  transform: scale(1.05);
+  opacity: 0.8;
+  filter: grayscale(0%) contrast(1);
+}
+
+.projectInfo {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3rem;
+  z-index: 2;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  transition: all 0.5s ease;
 }
 
 .projectInfo h3 {
-  font-size: 1.5rem;
-  font-weight: 500;
-  font-family: var(--font-outfit), sans-serif;
-  margin-bottom: 0.2rem;
+  font-size: 2rem;
+  font-family: var(--font-asimovian), sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: 0.5rem;
 }
 
 .projectInfo p {
-  color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+  font-weight: 700;
+}
+
+.projectLabel {
+  position: absolute;
+  top: 3rem;
+  left: 3rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.3);
+  z-index: 2;
+}
+
+@media (max-width: 1024px) {
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    height: auto;
+  }
+  .projectCard {
+    height: 50vh;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+@media (max-width: 600px) {
+  .galleryGrid {
+    grid-template-columns: 1fr;
+  }
 }

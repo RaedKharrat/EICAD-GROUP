@@ -2,6 +2,10 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import Link from "next/link";
 import CTASection from "@/components/CTASection";
+import HeroClient from "@/components/HeroClient";
+import ScrollReveal from "@/components/ScrollReveal";
+import HorizontalScrollTitle from "@/components/HorizontalScrollTitle";
+import StatsMarquee from "@/components/StatsMarquee";
 
 export default function Home() {
   return (
@@ -17,6 +21,7 @@ export default function Home() {
             className={styles.heroBgImage}
           />
           <div className={styles.heroOverlay}></div>
+          <HeroClient />
         </div>
 
         <div className={`container ${styles.heroContainer}`}>
@@ -39,6 +44,7 @@ export default function Home() {
             </div>
           </div>
         </div>
+        <StatsMarquee />
       </section>
 
 
@@ -96,9 +102,11 @@ export default function Home() {
       <section id="services" className={styles.bentoSection}>
         <div className={styles.bentoHeaderFull}>
           <div className="container">
-            <h2 className={styles.servicesTitleCenter}>
-              OUR MASTER SERVICES
-            </h2>
+            <HorizontalScrollTitle 
+              part1="OUR MASTER" 
+              part2="SERVICES" 
+              part3="EXCELLENCE"
+            />
           </div>
         </div>
 

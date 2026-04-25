@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, Outfit } from "next/font/google";
+import { Inter, Outfit, Asimovian } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,6 +7,7 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
+const asimovian = Asimovian({ subsets: ["latin"], variable: "--font-asimovian", weight: "400" });
 
 export const metadata: Metadata = {
   title: "EICAD Group | Architecture & Design Platform",
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
-      <body className={`${inter.variable} ${outfit.className}`}>
+      <body className={`${inter.variable} ${outfit.variable} ${asimovian.variable} ${outfit.className}`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

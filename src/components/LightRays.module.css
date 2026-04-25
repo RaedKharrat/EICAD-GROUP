@@ -1,0 +1,11 @@
+.lightRaysContainer {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 2; /* Between background image/overlay and content */
+  overflow: hidden;
+  mix-blend-mode: screen; /* Blend nicely with the dark background */
+}
