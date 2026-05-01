@@ -38,8 +38,8 @@ export default function Home() {
             </div>
             <div className={styles.heroBottomRight}>
               <p className={styles.heroLocation}>
-                EST. 2008<br />
-                DUBAI, UAE
+                EST. 2012<br />
+                TUNISIA • CANADA • UAE • FRANCE
               </p>
             </div>
           </div>

@@ -1,81 +1,223 @@
 .footer {
-  background-color: var(--footer-bg);
-  color: #ffffff;
-  padding: 4rem 0 0 0;
-}
-
-.footerContainer {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 3rem;
-  margin-bottom: 3rem;
-}
-
-.brand h2 {
-  font-size: 1.8rem;
-  margin-bottom: 1rem;
-}
-
-.brand span {
-  color: var(--accent);
-  font-weight: 300;
-}
-
-.brand p {
-  color: #a0aec0;
-  line-height: 1.6;
-  max-width: 300px;
-}
-
-.links h3, .contact h3 {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  background-color: var(--footer-bg); /* Inherits new deep blue */
+  color: var(--text-main);
+  padding: 8rem 0 0 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-family: var(--font-inter), sans-serif;
+  overflow: hidden;
   position: relative;
 }
 
-.links h3::after, .contact h3::after {
-  content: '';
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 40px;
-  height: 2px;
-  background-color: var(--accent);
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 4rem;
 }
 
-.links ul {
-  list-style: none;
+/* ── Top Section ────────────────────────────────────────── */
+.topSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding-bottom: 4rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.links li {
-  margin-bottom: 0.8rem;
-}
-
-.links a {
+.tagline {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
   color: #a0aec0;
+}
+
+.actionArea {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.actionText {
+  font-size: 0.8rem;
+  letter-spacing: 0.1em;
+  color: #a0aec0;
+  text-transform: uppercase;
+}
+
+.contactBtn {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+}
+
+.contactBtn svg {
+  width: 32px;
+  height: 32px;
+  transition: transform 0.3s ease;
+}
+
+.contactBtn:hover {
+  opacity: 0.8;
+}
+
+.contactBtn:hover svg {
+  transform: translateX(8px) translateY(-8px);
+}
+
+/* ── Middle Section ─────────────────────────────────────── */
+.middleSection {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+  padding: 6rem 0;
+}
+
+.column h3 {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 2rem;
+  opacity: 0.5;
+}
+
+.column ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.column li, .locationText {
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+.linkHover {
+  position: relative;
+  display: inline-block;
+  color: #d1d5db;
   transition: color 0.3s ease;
 }
 
-.links a:hover {
-  color: var(--accent);
+.linkHover::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #fff;
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 }
 
-.contact p {
-  color: #a0aec0;
-  margin-bottom: 0.5rem;
+.linkHover:hover {
+  color: #fff;
 }
 
-.copyright {
+.linkHover:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* ── Bottom Section ─────────────────────────────────────── */
+.bottomSection {
+  padding-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.giantText {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 15vw; /* Adjusted slightly so 'EICAD Group' fits on one line */
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 0.85;
+  color: var(--text-main);
   text-align: center;
-  padding: 1.5rem 0;
+  margin: 0 0 4rem 0;
+  user-select: none;
+  white-space: nowrap;
+}
+
+.giantText span {
+  font-weight: 300;
+  color: var(--accent);
+  font-size: 0.45em; /* Make "Group" significantly smaller than "EICAD" */
+  letter-spacing: 0.05em;
+  margin-left: 0.5rem;
+}
+
+.bottomMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
-  color: #a0aec0;
-  font-size: 0.9rem;
+  padding-top: 2rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  color: #6b7280;
+  text-transform: uppercase;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 2rem;
+}
+
+/* ── Responsive ─────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  .topSection {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  
+  .actionArea {
+    align-items: flex-start;
+    text-align: left;
+  }
+  
+  .middleSection {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
-  .footerContainer {
+  .container {
+    padding: 0 2rem;
+  }
+  
+  .middleSection {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 3rem;
+  }
+  
+  .bottomMeta {
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: flex-start;
+  }
+  
+  .giantText {
+    font-size: 28vw;
+    margin-bottom: 3rem;
   }
 }

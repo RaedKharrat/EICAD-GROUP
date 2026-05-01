@@ -1,154 +1,331 @@
-.cta {
+/* ═══════════════════════════════════════════════════════════
+   CTA SECTION — Sticky + Scroll-Scrubbed Video
+   Captions rotate every 10 s · Full CTA slides in at end
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── Outer scroll-lock wrapper ─────────────────────────────
+   Height = 100vh + (video_duration × PX_PER_SEC), set by JS.
+   NO overflow:hidden — that would kill position:sticky.      */
+.ctaWrapper {
   position: relative;
-  margin: 0; /* Removed top margin to close the gap */
-  padding: 12rem 0;
-  overflow: hidden;
-  min-height: 700px;
-  display: flex;
-  align-items: center;
-  background-color: #ffffff;
+  height: 400vh; /* JS overrides this once video metadata loads */
+}
+
+/* ── Sticky fullscreen panel ───────────────────────────────
+   Stays pinned to the top of the viewport while the user
+   scrolls through .ctaWrapper. Releases naturally at bottom. */
+.cta {
+  position: sticky;
+  top: 0;
+  left: 0;
   width: 100%;
+  height: 100dvh; /* Dynamic viewport height fixes mobile address bar jumps */
+  overflow: hidden;
+  background: var(--bg-color);
 }
 
-.bgImage {
+/* ── Full-bleed video ──────────────────────────────────────  */
+.videoBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
+  object-position: center;
+  display: block;
   z-index: 0;
-  opacity: 0.15;
-  filter: grayscale(100%);
+  pointer-events: none;
 }
 
+/* ── Gradient overlay ──────────────────────────────────────  */
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.9) 50%,
-    rgba(255, 255, 255, 0.4) 100%
-  );
   z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(to bottom,
+      rgba(17, 28, 48, 0.70) 0%,
+      rgba(17, 28, 48, 0.20) 30%,
+      rgba(17, 28, 48, 0.20) 70%,
+      rgba(17, 28, 48, 0.90) 100%
+    );
 }
 
-.ctaInner {
-  position: relative;
+/* ── Film-grain ────────────────────────────────────────────  */
+.noise {
+  position: absolute;
+  inset: 0;
   z-index: 2;
+  opacity: 0.035;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
 }
 
-.ctaContent {
-  max-width: 600px;
+/* ════════════════════════════════════════════════════════════
+   CAPTION AREA — managed entirely by GSAP
+   ════════════════════════════════════════════════════════════ */
+.captionArea {
+  position: absolute;
+  bottom: 5rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  padding: 0 3rem 0 3.5rem;
+  pointer-events: none;
+  opacity: 0; /* GSAP controls this */
 }
 
+.captionLabel {
+  display: block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--accent, #c9a96e);
+  margin-bottom: 1.2rem;
+}
+
+.captionText {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.captionLine {
+  display: block;
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(3.2rem, 6.5vw, 7rem);
+  font-weight: 300;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* ════════════════════════════════════════════════════════════
+   CTA PANEL — managed entirely by GSAP
+   ════════════════════════════════════════════════════════════ */
+.ctaPanel {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 15;
+  padding: 0 3.5rem 5.5rem;
+  opacity: 0; /* GSAP controls this */
+  pointer-events: auto; /* Allow clicks on button once visible */
+}
+
+/* Pre-title */
 .preTitle {
   display: block;
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.68rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.25em;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
+  letter-spacing: 0.35em;
+  color: var(--accent, #c9a96e);
+  margin-bottom: 1.4rem;
+  padding-left: 2rem;
+  position: relative;
 }
 
-.ctaContent h2 {
-  font-size: clamp(3rem, 6vw, 6rem);
+.preTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1.2rem;
+  height: 1px;
+  background: var(--accent, #c9a96e);
+}
+
+/* Heading */
+.ctaPanel h2 {
+  font-size: clamp(2.8rem, 5.5vw, 5.8rem);
   text-transform: uppercase;
   font-family: var(--font-outfit), sans-serif;
-  line-height: 0.95;
-  color: #000000; /* Dark text for white theme */
+  line-height: 0.9;
+  color: #ffffff;
   font-weight: 300;
-  margin-bottom: 2rem;
+  margin-bottom: 1.8rem;
   letter-spacing: -0.04em;
 }
 
-.ctaContent p {
-  font-size: 1.2rem;
-  color: rgba(0, 0, 0, 0.6); /* Muted dark text */
-  line-height: 1.6;
-  max-width: 480px;
-  margin-bottom: 3.5rem;
+/* Description */
+.ctaPanel p {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.58);
+  line-height: 1.72;
+  max-width: 440px;
+  margin-bottom: 2.5rem;
   font-weight: 300;
 }
 
+/* CTA button */
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 1.2rem;
-  padding: 1.2rem 3rem;
-  background-color: #000000; /* Dark button for white theme */
+  gap: 1rem;
+  padding: 1.05rem 2.6rem;
+  background-color: transparent;
   color: #ffffff;
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.15em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   text-decoration: none;
   border-radius: 2px;
+  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  position: relative;
+  overflow: hidden;
   transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  border: 1px solid #000000;
 }
 
-.ctaBtn svg {
-  width: 20px;
-  height: 20px;
-  transition: transform 0.4s ease;
+.ctaBtn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--accent, #c9a96e);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
 }
 
 .ctaBtn:hover {
-  background-color: transparent;
-  color: #000000;
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent, #c9a96e);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
 }
 
-.ctaInner {
-  position: relative;
-  z-index: 2;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
+.ctaBtn:hover::after  { transform: scaleX(1); }
+
+.ctaBtn svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.ctaContent {
-  max-width: 650px;
-}
+.ctaBtn:hover svg { transform: translateX(6px); }
 
-.ctaSideArrow {
+/* ── Scroll-progress bar (bottom edge) ────────────────────  */
+.progressBar {
   position: absolute;
-  top: 0;
+  bottom: 0;
+  left: 0;
   right: 0;
-  width: 120px;
+  z-index: 20;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.10);
+}
+
+.progressFill {
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(0, 0, 0, 0.02);
-  border-left: 1px solid rgba(0, 0, 0, 0.05);
-  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
-  cursor: pointer;
-  z-index: 10;
+  background: var(--accent, #c9a96e);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.08s linear;
 }
 
-.ctaSideArrow svg {
-  width: 50px;
-  height: 50px;
-  color: #000;
-  opacity: 0.3; /* More visible by default */
-  transition: all 0.4s ease;
+.progressLabel {
+  position: absolute;
+  bottom: 12px;
+  right: 1.5rem;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.32);
+  text-transform: uppercase;
 }
 
-.cta:hover .ctaSideArrow {
-  background-color: #000;
-  width: 140px;
+/* ── Corner brackets ───────────────────────────────────────  */
+.corner {
+  position: absolute;
+  width: 28px;
+  height: 28px;
+  z-index: 15;
+  pointer-events: none;
 }
 
-.cta:hover .ctaSideArrow svg {
-  color: #fff;
-  opacity: 1;
-  transform: translateX(15px);
+.cornerTL { top: 24px;    left: 24px;    border-top:    1.5px solid var(--accent, #c9a96e); border-left:   1.5px solid var(--accent, #c9a96e); }
+.cornerTR { top: 24px;    right: 24px;   border-top:    1.5px solid var(--accent, #c9a96e); border-right:  1.5px solid var(--accent, #c9a96e); }
+.cornerBL { bottom: 24px; left: 24px;    border-bottom: 1.5px solid var(--accent, #c9a96e); border-left:   1.5px solid var(--accent, #c9a96e); }
+.cornerBR { bottom: 24px; right: 24px;   border-bottom: 1.5px solid var(--accent, #c9a96e); border-right:  1.5px solid var(--accent, #c9a96e); }
+
+/* ── Timecode (top-right) ──────────────────────────────────  */
+.timecode {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 15;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  color: var(--accent, #c9a96e);
+  font-family: 'Courier New', monospace;
+  pointer-events: none;
 }
 
+/* ════════════════════════════════════════════════════════════
+   Responsive
+   ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
-  .cta {
-    padding: 6rem 0;
-    min-height: 400px;
+  .captionArea,
+  .ctaPanel {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .captionArea {
+    bottom: 5rem;
+  }
+
+  .captionLine {
+    font-size: clamp(2rem, 10vw, 3rem); /* Scaled down for mobile */
+    line-height: 1; /* Prevent text overlap on wrap */
+  }
+
+  .ctaPanel {
+    padding-bottom: 4rem;
+  }
+
+  .ctaPanel h2 {
+    font-size: clamp(2rem, 9vw, 3rem);
+    margin-bottom: 1.2rem;
+  }
+  
+  .ctaPanel p {
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+  }
+  
+  .ctaBtn {
+    padding: 0.9rem 1.8rem;
+    font-size: 0.65rem;
+    width: 100%; /* Full width button on mobile */
+    justify-content: center;
+  }
+
+  /* Shrink decorative elements on mobile */
+  .corner { width: 14px; height: 14px; }
+  .cornerTL, .cornerTR { top: 12px; }
+  .cornerBL, .cornerBR { bottom: 12px; }
+  .cornerTL, .cornerBL { left: 12px; }
+  .cornerTR, .cornerBR { right: 12px; }
+  
+  .timecode { 
+    top: 14px; 
+    right: 14px; 
+    font-size: 0.55rem;
+  }
+  
+  .progressLabel {
+    display: none; /* Hide scroll label on mobile to save space */
   }
 }
+

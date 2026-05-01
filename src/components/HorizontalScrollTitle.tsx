@@ -23,23 +23,12 @@ export default function HorizontalScrollTitle({ part1, part2, part3 }: Horizonta
       rows.forEach((row, index) => {
         const isEven = index % 2 === 1;
         const xMove = 600; // Even wider travel for dramatic effect
-        const rotationAngle = 45; // Aggressive Y rotation for deep curve
-        const zDepth = -500; // Deep spatial displacement
-
         gsap.fromTo(row,
           { 
             x: isEven ? xMove : -xMove,
-            rotationY: isEven ? -rotationAngle : rotationAngle,
-            z: zDepth,
-            opacity: 0,
-            scale: 0.6 // Start smaller for better distance feeling
           },
           {
             x: isEven ? -xMove : xMove,
-            rotationY: isEven ? rotationAngle : -rotationAngle,
-            z: 0,
-            opacity: 1,
-            scale: 1,
             ease: 'none',
             scrollTrigger: {
               trigger: containerRef.current,
@@ -61,10 +50,8 @@ export default function HorizontalScrollTitle({ part1, part2, part3 }: Horizonta
       className={styles.servicesTitleCenter} 
       style={{ 
         gap: '1rem', 
-        padding: '20vh 0',
-        perspective: '800px', // Stronger perspective for extreme 3D
-        transformStyle: 'preserve-3d',
-        overflow: 'visible'
+        padding: '15vh 0',
+        overflow: 'hidden'
       }}
     >
       <span 
@@ -72,7 +59,7 @@ export default function HorizontalScrollTitle({ part1, part2, part3 }: Horizonta
         style={{ 
           display: 'block', 
           whiteSpace: 'nowrap',
-          willChange: 'transform, opacity'
+          willChange: 'transform'
         }}
       >
         {part1}
@@ -82,7 +69,7 @@ export default function HorizontalScrollTitle({ part1, part2, part3 }: Horizonta
         style={{ 
           display: 'block', 
           whiteSpace: 'nowrap',
-          willChange: 'transform, opacity'
+          willChange: 'transform'
         }}
       >
         {part2}
@@ -93,7 +80,7 @@ export default function HorizontalScrollTitle({ part1, part2, part3 }: Horizonta
           style={{ 
             display: 'block', 
             whiteSpace: 'nowrap',
-            willChange: 'transform, opacity'
+            willChange: 'transform'
           }}
         >
           {part3}

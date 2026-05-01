@@ -1,6 +1,8 @@
 .main {
   width: 100%;
-  overflow-x: hidden;
+  /* NOTE: overflow must NOT be hidden/auto/scroll here — it breaks
+     position:sticky on .ctaWrapper inside. Clipping is handled
+     per-section where needed. */
   background-color: var(--bg-color);
 }
 
@@ -10,10 +12,10 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  padding: 120px 0 60px 0;
+  justify-content: flex-end;
+  padding: 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: var(--bg-color);
 }
 
 .heroBg {
@@ -39,9 +41,9 @@
   height: 100%;
   background: radial-gradient(
     circle at center,
-    rgba(35, 35, 35, 0.8) 0%, /* Lighter center for visible glow */
-    rgba(15, 15, 15, 0.9) 50%,
-    rgba(0, 0, 0, 1) 100%
+    rgba(23, 36, 60, 0.8) 0%, /* Lighter center for visible glow */
+    rgba(17, 28, 48, 0.9) 50%,
+    rgba(17, 28, 48, 1) 100%
   );
   z-index: 1;
 }
@@ -49,11 +51,11 @@
 .heroContainer {
   position: relative;
   z-index: 2;
-  height: 100%;
+  flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 80px 0 60px 0;
+  padding: 120px 0 4rem 0;
 }
 
 .heroTop {
@@ -106,38 +108,7 @@
   color: rgba(255, 255, 255, 0.6);
 }
 
-/* Stats Section */
-.statsRow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
-  margin-top: 4rem;
-  padding-top: 3rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.statItem {
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  align-items: center;
-  text-align: center;
-}
-
-.statNumber {
-  font-size: 2.5rem;
-  font-weight: 600;
-  color: var(--primary);
-  font-family: var(--font-outfit), sans-serif;
-}
-
-.statLabel {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.5);
-  line-height: 1.4;
-}
+/* Stats Section — handled by StatsMarquee component */
 
 /* Gallery Section */
 .gallerySection {
@@ -166,7 +137,7 @@
   left: 0;
   width: 100%;
   padding: 4rem;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  background: linear-gradient(to top, rgba(17, 28, 48, 0.9), transparent);
   color: white;
   z-index: 2;
 }
@@ -230,7 +201,7 @@
   justify-content: space-between;
   padding: 8rem 0 0 0;
   overflow: hidden;
-  background-color: #000;
+  background-color: var(--bg-color);
 }
 
 .experienceBg {
@@ -246,7 +217,7 @@
 .experienceOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 50%, rgba(0,0,0,0.8) 100%);
+  background: linear-gradient(to bottom, rgba(17, 28, 48, 0.8) 0%, rgba(17, 28, 48, 0.4) 50%, rgba(17, 28, 48, 0.9) 100%);
   z-index: 1;
 }
 
@@ -326,9 +297,10 @@
 /* ─── Services / Bento Section (FULL WIDTH) ─── */
 .bentoSection {
   padding: 10rem 0 0 0;
-  background-color: #000000;
+  background-color: var(--bg-color);
   position: relative;
-  overflow: hidden;
+  /* Use clip instead of overflow:hidden — doesn't break sticky descendants */
+  clip-path: inset(0);
 }
 
 .bentoSection::before {
@@ -356,7 +328,7 @@
 .bentoItem {
   position: relative;
   overflow: hidden;
-  background-color: #111111;
+  background-color: var(--surface-color);
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   border: 0.5px solid rgba(255, 255, 255, 0.05); /* Very subtle grid lines */
 }
@@ -405,7 +377,7 @@
 }
 
 .bentoAccent .bentoLink {
-  background-color: #000000;
+  background-color: var(--bg-color);
   color: #ffffff !important;
   padding: 1rem 2.5rem;
   border-radius: 2px;
@@ -438,7 +410,7 @@
 .bentoOverlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(17, 28, 48, 0.95) 0%, transparent 60%);
   z-index: 1;
 }
 
@@ -494,7 +466,7 @@
   font-size: 0.65rem;
   font-weight: 700;
   padding: 0.4rem 0.8rem;
-  background-color: #000;
+  background-color: var(--bg-color);
   color: #fff;
   letter-spacing: 0.1em;
   border-radius: 2px;
@@ -571,7 +543,7 @@
 }
 
 .bentoAccent:hover .bentoSideArrow {
-  background-color: #000;
+  background-color: var(--bg-color);
   width: 150px;
 }
 
