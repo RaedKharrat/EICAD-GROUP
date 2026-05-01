@@ -124,7 +124,6 @@ export default function AboutPage() {
         description="Our team of expert architects and designers is ready to bring your vision to life."
         buttonText="Start Your Journey"
         buttonHref="/contact"
-        bgImage="https://images.unsplash.com/photo-1600585154340-be6199f7f009"
       />
     </div>
   );

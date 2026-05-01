@@ -1,7 +1,7 @@
 .main {
   width: 100%;
   overflow-x: hidden;
-  background-color: #000;
+  background-color: var(--bg-color);
   color: #fff;
 }
 
@@ -9,7 +9,7 @@
 .header {
   padding-top: 180px;
   padding-bottom: 6rem;
-  background-color: #000;
+  background-color: var(--bg-color);
 }
 
 .mainTitle {
@@ -65,7 +65,7 @@
 
 .projectCard:hover {
   flex-grow: 1.5; /* If using flex, but we are in grid. Let's use a different trick or keep it simple but powerful */
-  background-color: #111;
+  background-color: var(--surface-color);
 }
 
 .imageWrapper {
@@ -98,7 +98,7 @@
   width: 100%;
   padding: 3rem;
   z-index: 2;
-  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  background: linear-gradient(to top, rgba(17, 28, 48, 0.9) 0%, transparent 100%);
   transition: all 0.5s ease;
 }
 

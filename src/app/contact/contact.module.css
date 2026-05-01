@@ -72,8 +72,8 @@
 .formGroup textarea {
   width: 100%;
   padding: 1.25rem;
-  background-color: #f8f9fb;
-  border: 1px solid #eef0f2;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   font-family: inherit;
   color: var(--text-main);
@@ -86,8 +86,8 @@
 .formGroup textarea:focus {
   outline: none;
   border-color: var(--accent);
-  background-color: white;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .submitBtn {
@@ -101,11 +101,11 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  background-color: var(--primary);
+  background-color: var(--surface-color);
   color: #ffffff;
   padding: 4rem;
   border-radius: 30px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
 }
 
 .infoBlock h3 {
