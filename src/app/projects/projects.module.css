@@ -1,6 +1,5 @@
 .main {
   width: 100%;
-  overflow-x: hidden;
   background-color: var(--bg-color);
   color: #fff;
 }
@@ -15,10 +14,10 @@
 .mainTitle {
   font-size: clamp(4rem, 15vw, 12rem);
   line-height: 0.85;
-  font-weight: 400;
-  letter-spacing: -0.02em;
+  font-weight: 300;
+  letter-spacing: -0.04em;
   text-transform: uppercase;
-  font-family: var(--font-asimovian), sans-serif;
+  font-family: var(--font-outfit), sans-serif;
   color: #ffffff;
   margin-bottom: 2rem;
 }

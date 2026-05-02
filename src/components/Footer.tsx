@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        
+
         {/* Top: Brand & Call to Action */}
         <div className={styles.topSection}>
           <div className={styles.brandInfo}>
@@ -14,7 +14,7 @@ export default function Footer() {
               LUXURY ARCHITECTURE & INTERIOR DESIGN.
             </p>
           </div>
-          
+
           <div className={styles.actionArea}>
             <span className={styles.actionText}>HAVE A VISION?</span>
             <Link href="/contact" className={styles.contactBtn}>
@@ -37,7 +37,7 @@ export default function Footer() {
               <li><a href="#" className={styles.linkHover}>Pinterest</a></li>
             </ul>
           </div>
-          
+
           <div className={styles.column}>
             <h3>EXPLORE</h3>
             <ul>
@@ -68,9 +68,9 @@ export default function Footer() {
         {/* Bottom: Giant Typography & Copyright */}
         <div className={styles.bottomSection}>
           <h1 className={styles.giantText}>
-            EICAD <span>Group</span>
+            EICAD
           </h1>
-          
+
           <div className={styles.bottomMeta}>
             <p>&copy; {new Date().getFullYear()} EICAD GROUP. ALL RIGHTS RESERVED.</p>
             <div className={styles.legalLinks}>

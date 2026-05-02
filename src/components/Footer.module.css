@@ -145,24 +145,26 @@
 }
 
 .giantText {
-  font-family: var(--font-outfit), sans-serif;
-  font-size: 15vw; /* Adjusted slightly so 'EICAD Group' fits on one line */
-  font-weight: 700;
+  font-family: var(--font-asimovian), sans-serif;
+  font-size: 24vw;
+  font-weight: 400;
   letter-spacing: -0.02em;
-  line-height: 0.85;
-  color: var(--text-main);
+  line-height: 0.75;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.15);
   text-align: center;
   margin: 0 0 4rem 0;
   user-select: none;
   white-space: nowrap;
+  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+  cursor: default;
 }
 
-.giantText span {
-  font-weight: 300;
+.giantText:hover {
   color: var(--accent);
-  font-size: 0.45em; /* Make "Group" significantly smaller than "EICAD" */
-  letter-spacing: 0.05em;
-  margin-left: 0.5rem;
+  -webkit-text-stroke: 2px var(--accent);
+  text-shadow: 0 0 60px rgba(203, 164, 101, 0.3);
+  transform: scale(1.02);
 }
 
 .bottomMeta {
