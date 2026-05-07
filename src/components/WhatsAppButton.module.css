@@ -1,7 +1,77 @@
-.floatBtn {
+.wrapper {
   position: fixed;
   bottom: 30px;
   right: 30px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.dropdown {
+  background-color: var(--surface-color, #1a1a1a);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 200px;
+  animation: slideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: bottom right;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.dropdownHeader {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-muted, #888);
+  padding: 8px 12px;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  margin-bottom: 4px;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  color: var(--text-main, #fff);
+  text-decoration: none;
+  transition: all 0.2s ease;
+  background-color: transparent;
+}
+
+.dropdownItem:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.flag {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.country {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.floatBtn {
   width: 60px;
   height: 60px;
   background-color: #25D366;
@@ -10,12 +80,13 @@
   text-align: center;
   font-size: 30px;
   box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-  z-index: 1000;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
   animation: pulse 2s infinite;
+  border: none;
+  cursor: pointer;
 }
 
 .floatBtn:hover {

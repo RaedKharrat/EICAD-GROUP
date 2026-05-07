@@ -73,19 +73,8 @@ export default function CTASection({
         const rect = wrapper.getBoundingClientRect();
         const scrollable = rect.height - window.innerHeight;
 
-        // 0. TV Expansion Effect (Entry animation before sticking)
-        let ep = 1 - (rect.top / window.innerHeight);
-        ep = Math.min(1, Math.max(0, ep)); // 0 at bottom of screen, 1 when hitting top
-        
-        // Cubic ease out for smoother expansion
-        const easeEp = 1 - Math.pow(1 - ep, 3);
-        
-        if (sectionRef.current) {
-          const hInset = 10 * (1 - easeEp); // Starts with 10vw horizontal padding
-          const vInset = 10 * (1 - easeEp); // Starts with 10vh vertical padding
-          const br = 60 * (1 - easeEp);     // Starts with 60px border radius
-          sectionRef.current.style.clipPath = `inset(${vInset}vh ${hInset}vw round ${br}px)`;
-        }
+        /* 0. TV Expansion Effect Removed as per request */
+        /* It now appears as a fixed TV screen in the section */
 
         if (scrollable > 0) {
           // Calculate exact scroll progress inside the wrapper
@@ -180,7 +169,7 @@ export default function CTASection({
 
   return (
     <div ref={wrapperRef} className={styles.ctaWrapper}>
-      <section ref={sectionRef} className={styles.cta}>
+      <section ref={sectionRef} className={`${styles.cta} ${styles.tvFrame}`}>
 
         {/* Full-bleed video */}
         <video

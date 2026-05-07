@@ -51,7 +51,24 @@
 
 .heroImage {
   object-fit: cover;
-  filter: brightness(0.8) contrast(1.1);
+  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(10, 20, 40, 0.4);
+  mix-blend-mode: multiply;
+  transition: background-color 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  pointer-events: none;
+}
+
+.heroImageWrapper:hover .imageOverlay {
+  background-color: rgba(10, 20, 40, 0.1);
+}
+
+.heroImageWrapper:hover .heroImage {
+  transform: scale(1.02);
 }
 
 .statsSection {
@@ -69,8 +86,29 @@
 
 .statBox {
   text-align: left;
-  border-left: 2px solid var(--accent);
+  border-left: 2px solid rgba(201, 169, 110, 0.2); /* Subtle accent */
   padding-left: 2rem;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.statBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 2px;
+  height: 0;
+  background-color: var(--accent);
+  transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.statBox:hover {
+  transform: translateX(10px);
+}
+
+.statBox:hover::before {
+  height: 100%;
 }
 
 .statBox h3 {
@@ -122,6 +160,16 @@
   font-size: 1.25rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.7);
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+}
+
+.philosophyRight p:hover {
+  border-left-color: var(--accent);
+  color: #fff;
+  transform: translateX(5px);
 }
 
 .pillars {
@@ -244,7 +292,17 @@
   .hero { padding-top: 140px; }
   .heroImageWrapper { height: 60vh; }
   .philosophy, .statsSection, .pillars { padding: 6rem 0; }
-  .statBox { padding-left: 1.5rem; }
+  .statBox { padding-left: 1.5rem; border-left: 1px solid var(--accent); }
   .pillar { padding: 4rem 2rem; }
   .pillar h3 { font-size: 2.5rem; }
+  
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+  
+  .philosophySplit {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }

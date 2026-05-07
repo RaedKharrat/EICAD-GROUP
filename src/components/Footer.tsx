@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { siteConfig } from '@/lib/siteConfig';
 
 export default function Footer() {
   return (
@@ -50,9 +51,10 @@ export default function Footer() {
           <div className={styles.column}>
             <h3>CONTACT</h3>
             <ul>
-              <li><a href="mailto:Contact.eicadgroup@gmail.com" className={styles.linkHover}>Contact.eicadgroup@gmail.com</a></li>
-              <li><a href="tel:+21655566531" className={styles.linkHover}>+216 55 566 531 (Tunis)</a></li>
-              <li><a href="tel:+14384057422" className={styles.linkHover}>+1 438 405 7422 (Canada)</a></li>
+              <li><a href={`mailto:${siteConfig.contact.email}`} className={styles.linkHover}>{siteConfig.contact.email}</a></li>
+              {siteConfig.contact.phones.map((phone, idx) => (
+                <li key={idx}><a href={`tel:+${phone.number}`} className={styles.linkHover}>{phone.label}</a></li>
+              ))}
             </ul>
           </div>
 

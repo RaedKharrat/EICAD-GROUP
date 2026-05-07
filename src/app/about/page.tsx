@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./about.module.css";
 import CTASection from "@/components/CTASection";
 import FAQSection from "@/components/FAQSection";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "About Us | EICAD Group",
@@ -21,7 +22,9 @@ export default function AboutPage() {
               We shape the future of modern living through visionary architecture.
             </h1>
             <p className={styles.heroDesc}>
-              Since 2012, EICAD Group has been at the forefront of luxury design, transforming raw concepts into timeless landmarks across the globe.
+              {siteConfig.shortDescription}
+              <br/><br/>
+              Our expertise spans across: {siteConfig.services.join(", ")}.
             </p>
           </div>
         </div>
@@ -34,6 +37,7 @@ export default function AboutPage() {
             className={styles.heroImage}
             priority
           />
+          <div className={styles.imageOverlay} />
         </div>
       </section>
 

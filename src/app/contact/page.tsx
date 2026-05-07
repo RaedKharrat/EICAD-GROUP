@@ -1,4 +1,5 @@
 import styles from "./contact.module.css";
+import { siteConfig } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Contact Us | EICAD Group",
@@ -78,11 +79,19 @@ export default function ContactPage() {
           <div className={`${styles.infoWrapper} slide-up`} style={{ animationDelay: "0.4s" }}>
             <div className={styles.infoBlock}>
               <h3>Our Headquarters</h3>
-              <p>123 Luxury Avenue, Suite 400<br/>Design District, NY 10001</p>
+              <p>128 RUE DE RIVOLI<br/>75001 PARIS, FRANCE</p>
             </div>
             <div className={styles.infoBlock}>
               <h3>Contact Info</h3>
-              <p>contact@eicadgroup.com<br/>+1 (555) 123-4567</p>
+              <p>
+                {siteConfig.contact.email}<br/>
+                {siteConfig.contact.phones.map((phone, idx) => (
+                  <span key={idx}>
+                    {phone.label}
+                    <br/>
+                  </span>
+                ))}
+              </p>
             </div>
             <div className={styles.infoBlock}>
               <h3>Business Hours</h3>

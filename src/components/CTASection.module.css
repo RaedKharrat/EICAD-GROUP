@@ -8,8 +8,24 @@
    NO overflow:hidden — that would kill position:sticky.      */
 .ctaWrapper {
   position: relative;
-  height: 400vh; /* JS overrides this once video metadata loads */
+  height: 400vh;
+  background-color: #050a14;
+  background-image: 
+    radial-gradient(circle at 2px 2px, rgba(30, 58, 138, 0.25) 1px, transparent 0);
+  background-size: 32px 32px;
+  overflow: clip;
 }
+
+.ctaWrapper::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 10%, rgba(5, 10, 20, 0.9) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Decorative shapes removed since CTA is now fullscreen */
 
 /* ── Sticky fullscreen panel ───────────────────────────────
    Stays pinned to the top of the viewport while the user
@@ -17,11 +33,19 @@
 .cta {
   position: sticky;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 100dvh; /* Dynamic viewport height fixes mobile address bar jumps */
+  height: 100vh;
+  margin: 0;
+  max-width: none;
   overflow: hidden;
-  background: var(--bg-color);
+  background: #000;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 5;
+}
+
+.tvFrame {
+  /* Removed TV frame styling */
 }
 
 /* ── Full-bleed video ──────────────────────────────────────  */
@@ -99,12 +123,12 @@
   display: block;
   font-family: var(--font-outfit), sans-serif;
   font-size: clamp(3.2rem, 6.5vw, 7rem);
-  font-weight: 300;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  font-weight: 200; /* Lighter weight for modern feel */
+  line-height: 0.9;
+  letter-spacing: -0.05em;
   text-transform: uppercase;
   color: #ffffff;
-  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  text-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -159,32 +183,36 @@
 
 /* Description */
 .ctaPanel p {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.58);
-  line-height: 1.72;
-  max-width: 440px;
-  margin-bottom: 2.5rem;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 3rem;
   font-weight: 300;
+  letter-spacing: 0.01em;
 }
 
 /* CTA button */
 .ctaBtn {
   display: inline-flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.05rem 2.6rem;
-  background-color: transparent;
+  gap: 1.2rem;
+  padding: 1.2rem 3rem;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   color: #ffffff;
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.25em;
   text-transform: uppercase;
   text-decoration: none;
-  border-radius: 2px;
-  border: 1.5px solid rgba(255, 255, 255, 0.45);
+  border-radius: 100px; /* Friendlier rounded pill shape */
+  border: 1px solid rgba(255, 255, 255, 0.15);
   position: relative;
   overflow: hidden;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 }
 
 .ctaBtn::after {
@@ -275,6 +303,19 @@
    Responsive
    ════════════════════════════════════════════════════════════ */
 @media (max-width: 768px) {
+  .ctaWrapper {
+    background-size: 24px 24px;
+  }
+
+  .cta {
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
   .captionArea,
   .ctaPanel {
     padding-left: 1.25rem;

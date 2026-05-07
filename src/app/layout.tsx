@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Inter, Outfit, Asimovian } from "next/font/google";
+import { Inter, Outfit } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
@@ -7,7 +8,12 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
-const asimovian = Asimovian({ subsets: ["latin"], variable: "--font-asimovian", weight: "400" });
+
+const asimovian = localFont({
+  src: "../../public/Asimovian-Regular.ttf",
+  variable: "--font-asimovian",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "EICAD Group | Architecture & Design Platform",
