@@ -1,117 +1,193 @@
+"use client";
+
+import { useRef, useState } from "react";
+import Image from "next/image";
 import styles from "./contact.module.css";
 import { siteConfig } from "@/lib/siteConfig";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
-export const metadata = {
-  title: "Contact Us | EICAD Group",
-  description: "Get in touch with EICAD Group for your next architecture or interior design project.",
-};
+gsap.registerPlugin(ScrollTrigger);
 
 export default function ContactPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useGSAP(() => {
+    const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+
+    // Hero Text
+    tl.from(".gsap-hero-text", {
+      y: 40,
+      opacity: 0,
+      duration: 1.2,
+      stagger: 0.15,
+      ease: "power4.out"
+    });
+
+    // Hero Image Initial Fade
+    tl.from(`.${styles.heroImageWrapper}`, {
+      opacity: 0,
+      duration: 1.5,
+      scale: 1.05
+    }, "-=0.6");
+
+    // Form Elements & Info Rows ScrollTrigger
+    gsap.from(".gsap-contact-item", {
+      y: 30,
+      opacity: 0,
+      duration: 1,
+      stagger: 0.1,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: `.${styles.contactSplitSection}`,
+        start: "top 80%",
+      }
+    });
+
+  }, { scope: containerRef });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    
+    // Simple feedback animation
+    gsap.to(".gsap-submit-btn", {
+      opacity: 0.5,
+      duration: 0.2,
+      yoyo: true,
+      repeat: 3,
+      onComplete: () => {
+        setTimeout(() => {
+          setIsSubmitting(false);
+          alert("Thank you! Your inquiry has been sent.");
+        }, 800);
+      }
+    });
+  };
+
   return (
-    <div className={styles.main}>
-      <section className={styles.header}>
+    <div className={styles.main} ref={containerRef}>
+      
+      {/* ── Immersive Clean Hero (Matches /about) ── */}
+      <section className={styles.hero}>
         <div className="container">
-          <div className="splitHeader">
-            <div>
-              <h1 className="slide-up">
-                <span style={{ fontWeight: '600' }}>LET'S</span><br/>
-                CONNECT
-              </h1>
+          <div className={styles.heroText}>
+            <span className={`${styles.preTitle} gsap-hero-text`}>Contact EICAD</span>
+            <h1 className={`${styles.mainTitle} gsap-hero-text`}>
+              <span style={{ fontWeight: '600' }}>LET'S</span><br/>
+              CONNECT
+            </h1>
+            <p className={`${styles.heroDesc} gsap-hero-text`}>
+              Whether you are looking to build a luxury residence, design a commercial space, 
+              or need expert architectural consultation, our team is ready to assist you.
+            </p>
+          </div>
+        </div>
+        <div className={styles.heroImageWrapper}>
+          <Image 
+            src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d" 
+            alt="EICAD Contact Architecture" 
+            fill
+            sizes="100vw"
+            className={styles.heroImage}
+            priority
+          />
+          <div className={styles.imageOverlay} />
+        </div>
+      </section>
+
+      {/* ── Elegant Split Form & Info (Matches /about Philosophy) ── */}
+      <section className={styles.contactSplitSection}>
+        <div className="container">
+          <div className={styles.contactSplit}>
+            
+            {/* Left: Form */}
+            <div className={styles.contactLeft}>
+              <h2 className={`${styles.sectionTitle} gsap-contact-item`}>Send Us a<br/>Message</h2>
+              
+              <form className={styles.formGrid} onSubmit={handleSubmit}>
+                <div className={styles.inputRow}>
+                  <div className={`${styles.formItem} gsap-contact-item`}>
+                    <input type="text" id="firstName" required placeholder=" " />
+                    <label htmlFor="firstName">First Name</label>
+                  </div>
+                  <div className={`${styles.formItem} gsap-contact-item`}>
+                    <input type="text" id="lastName" required placeholder=" " />
+                    <label htmlFor="lastName">Last Name</label>
+                  </div>
+                </div>
+
+                <div className={`${styles.formItem} gsap-contact-item`}>
+                  <input type="email" id="email" required placeholder=" " />
+                  <label htmlFor="email">Email Address</label>
+                </div>
+
+                <div className={`${styles.formItem} gsap-contact-item`}>
+                  <select id="service" required defaultValue="">
+                    <option value="" disabled>Select a service</option>
+                    <option value="architecture">Architecture Design</option>
+                    <option value="interior">Interior Design</option>
+                    <option value="construction">Construction Management</option>
+                    <option value="consulting">Online Consulting</option>
+                  </select>
+                  <label htmlFor="service">Service Needed</label>
+                </div>
+
+                <div className={`${styles.formItem} gsap-contact-item`}>
+                  <textarea id="message" rows={4} required placeholder=" "></textarea>
+                  <label htmlFor="message">Project Details</label>
+                </div>
+
+                <button 
+                  type="submit" 
+                  className={`${styles.submitBtn} gsap-submit-btn gsap-contact-item`}
+                  disabled={isSubmitting}
+                >
+                  <span className={styles.btnText}>{isSubmitting ? "SENDING..." : "SUBMIT INQUIRY"}</span>
+                  {!isSubmitting && (
+                    <svg className={styles.btnIcon} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                      <line x1="5" y1="12" x2="19" y2="12" />
+                      <polyline points="12 5 19 12 12 19" />
+                    </svg>
+                  )}
+                </button>
+              </form>
             </div>
-            <div className="splitHeaderRight">
-              <p className="slide-up" style={{ animationDelay: "0.2s" }}>
-                Whether you are looking to build a luxury residence, design a commercial space, 
-                or need expert architectural consultation, our team is ready to assist you.
-              </p>
-              <div className="arrowCircleWrapper">
-                <div className="arrowCircle arrowCircleBlack">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1">
-                    <line x1="7" y1="7" x2="17" y2="17"></line>
-                    <polyline points="17 7 17 17 7 17"></polyline>
-                  </svg>
+
+            {/* Right: Info */}
+            <div className={styles.contactRight}>
+              <div className={styles.infoList}>
+                <div className={`${styles.infoRow} gsap-contact-item`}>
+                  <h3>LOCATION</h3>
+                  <p>128 RUE DE RIVOLI<br/>75001 PARIS, FRANCE</p>
+                </div>
+
+                <div className={`${styles.infoRow} gsap-contact-item`}>
+                  <h3>CONTACT</h3>
+                  <p>
+                    <a href={`mailto:${siteConfig.contact.email}`} className={styles.linkHover}>{siteConfig.contact.email}</a><br/>
+                    {siteConfig.contact.phones.map((phone, idx) => (
+                      <span key={idx}>
+                        <a href={`tel:+${phone.number}`} className={styles.linkHover}>{phone.label}</a>
+                        <br/>
+                      </span>
+                    ))}
+                  </p>
+                </div>
+
+                <div className={`${styles.infoRow} gsap-contact-item`}>
+                  <h3>HOURS</h3>
+                  <p>MON - FRI: 9:00 AM - 6:00 PM<br/>SAT & SUN: CLOSED</p>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </section>
 
-      <section className={styles.contactSection}>
-        <div className={`container ${styles.contactGrid}`}>
-          
-          <div className={`${styles.formWrapper} slide-up`} style={{ animationDelay: "0.3s" }}>
-            <h2><span style={{ fontWeight: '600' }}>Send us</span> a message</h2>
-            <form className={styles.contactForm}>
-              <div className={styles.inputRow}>
-                <div className={styles.formGroup}>
-                  <label htmlFor="firstName">First Name</label>
-                  <input type="text" id="firstName" required />
-                </div>
-                <div className={styles.formGroup}>
-                  <label htmlFor="lastName">Last Name</label>
-                  <input type="text" id="lastName" required />
-                </div>
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="email">Email Address</label>
-                <input type="email" id="email" required />
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="service">Service Needed</label>
-                <select id="service" required defaultValue="">
-                  <option value="" disabled>Select a service</option>
-                  <option value="architecture">Architecture Design</option>
-                  <option value="interior">Interior Design</option>
-                  <option value="construction">Construction</option>
-                  <option value="consulting">Online Consulting</option>
-                </select>
-              </div>
-              <div className={styles.formGroup}>
-                <label htmlFor="message">Message</label>
-                <textarea id="message" rows={5} required></textarea>
-              </div>
-              <button type="submit" className={`btn btn-accent ${styles.submitBtn}`}>
-                Submit Inquiry
-              </button>
-            </form>
-          </div>
-
-          <div className={`${styles.infoWrapper} slide-up`} style={{ animationDelay: "0.4s" }}>
-            <div className={styles.infoBlock}>
-              <h3>Our Headquarters</h3>
-              <p>128 RUE DE RIVOLI<br/>75001 PARIS, FRANCE</p>
-            </div>
-            <div className={styles.infoBlock}>
-              <h3>Contact Info</h3>
-              <p>
-                {siteConfig.contact.email}<br/>
-                {siteConfig.contact.phones.map((phone, idx) => (
-                  <span key={idx}>
-                    {phone.label}
-                    <br/>
-                  </span>
-                ))}
-              </p>
-            </div>
-            <div className={styles.infoBlock}>
-              <h3>Business Hours</h3>
-              <p>Monday - Friday: 9:00 AM - 6:00 PM<br/>Saturday & Sunday: Closed</p>
-            </div>
-            <div className={styles.mapWrapper}>
-              {/* Mock map using a placeholder image for aesthetics */}
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937950147!2d-73.98731968459391!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1625688534002!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen={false} 
-                loading="lazy">
-              </iframe>
-            </div>
-          </div>
-
-        </div>
-      </section>
     </div>
   );
 }
