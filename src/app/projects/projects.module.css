@@ -1,70 +1,214 @@
+/* ──────────────────────────────────────────────────────
+   Projects Page — Visual identity matched to /about
+   ────────────────────────────────────────────────────── */
+
 .main {
   width: 100%;
   background-color: var(--bg-color);
   color: #fff;
 }
 
-/* Projects Header - Massive Asimovian */
-.header {
-  padding-top: 180px;
-  padding-bottom: 6rem;
+/* ─── HERO ─────────────────────────────────────────────── */
+.hero {
+  padding-top: 200px;
+  padding-bottom: 8rem;
   background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
 }
 
-.mainTitle {
-  font-size: clamp(4rem, 15vw, 12rem);
-  line-height: 0.85;
-  font-weight: 300;
-  letter-spacing: -0.04em;
-  text-transform: uppercase;
-  font-family: var(--font-outfit), sans-serif;
-  color: #ffffff;
-  margin-bottom: 2rem;
+.heroInner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: flex-end;
+}
+
+.heroText {
+  max-width: 700px;
+}
+
+.heroRight {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  padding-bottom: 0.5rem;
 }
 
 .preTitle {
-  display: inline-block;
-  font-size: 0.75rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.8rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.3em;
-  color: var(--primary);
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  display: block;
   margin-bottom: 2rem;
-  padding: 0.5rem 1rem;
-  border: 1px solid rgba(212, 175, 55, 0.3);
 }
 
-/* Panoramic Gallery - Edge to Edge */
+.mainTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(3.5rem, 7vw, 7.5rem);
+  font-weight: 300;
+  line-height: 1.0;
+  color: #fff;
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.05em;
+}
+
+.wordWrap {
+  display: block;
+  overflow: hidden;
+  line-height: 1.05;
+}
+
+.word {
+  display: block;
+}
+
+.heroSubtitle {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 440px;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+}
+
+.heroBtn {
+  align-self: flex-start;
+}
+
+.heroLineWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 6rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.heroLine {
+  flex: 1;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+.heroLineLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+/* ─── STATS ────────────────────────────────────────────── */
+.statsSection {
+  padding: 8rem 0;
+  background-color: var(--surface-color);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+.statBox {
+  text-align: left;
+  border-left: 2px solid rgba(201, 169, 110, 0.2);
+  padding-left: 2rem;
+  position: relative;
+  transition: transform 0.4s ease;
+}
+
+.statBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2px;
+  width: 2px;
+  height: 0;
+  background-color: var(--accent);
+  transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.statBox:hover {
+  transform: translateX(10px);
+}
+
+.statBox:hover::before {
+  height: 100%;
+}
+
+.statNum {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+
+.statLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ─── GALLERY ──────────────────────────────────────────── */
 .gallerySection {
-  padding: 0;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 10rem 0 0;
+}
+
+.sectionTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 5rem;
+}
+
+.sectionTitle em {
+  font-style: italic;
+  color: var(--accent);
 }
 
 .galleryGrid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
   width: 100%;
-  height: 80vh;
-  min-height: 600px;
-  gap: 0;
+  margin-top: 0;
 }
 
 .projectCard {
   position: relative;
-  height: 100%;
-  border-right: 1px solid rgba(255,255,255,0.1);
+  aspect-ratio: 4/5;
   overflow: hidden;
-  transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: pointer;
-}
-
-.projectCard:last-child {
-  border-right: none;
-}
-
-.projectCard:hover {
-  flex-grow: 1.5; /* If using flex, but we are in grid. Let's use a different trick or keep it simple but powerful */
   background-color: var(--surface-color);
+}
+
+.cardWide {
+  grid-column: span 2;
+  aspect-ratio: 16/9;
 }
 
 .imageWrapper {
@@ -75,19 +219,47 @@
 }
 
 .projectCard:hover .imageWrapper {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
-.imageWrapper img {
+.projectImg {
   object-fit: cover;
-  opacity: 0.6;
-  filter: grayscale(100%) contrast(1.1);
-  transition: all 0.8s ease;
+  filter: grayscale(60%) contrast(1.05);
+  transition: filter 0.9s ease;
 }
 
-.projectCard:hover .imageWrapper img {
-  opacity: 0.8;
+.projectCard:hover .projectImg {
   filter: grayscale(0%) contrast(1);
+}
+
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(11, 19, 36, 0.95) 0%,
+    rgba(11, 19, 36, 0.3) 50%,
+    transparent 100%
+  );
+  transition: opacity 0.5s ease;
+}
+
+.projectLabel {
+  position: absolute;
+  top: 2.5rem;
+  left: 2.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  transition: color 0.4s ease;
+}
+
+.projectCard:hover .projectLabel {
+  color: var(--accent);
 }
 
 .projectInfo {
@@ -97,49 +269,328 @@
   width: 100%;
   padding: 3rem;
   z-index: 2;
-  background: linear-gradient(to top, rgba(17, 28, 48, 0.9) 0%, transparent 100%);
-  transition: all 0.5s ease;
+  transform: translateY(1rem);
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.projectInfo h3 {
-  font-size: 2rem;
-  font-family: var(--font-asimovian), sans-serif;
+.projectCard:hover .projectInfo {
+  transform: translateY(0);
+}
+
+.projectMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.projectLocation,
+.projectYear {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.projectYear {
+  color: var(--accent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.projectCard:hover .projectYear {
+  opacity: 1;
+}
+
+.projectTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-weight: 300;
   text-transform: uppercase;
   color: #fff;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.projectInfo p {
+.projectCard:hover .projectTitle {
+  transform: translateY(-4px);
+}
+
+.projectCta {
+  font-family: var(--font-inter), sans-serif;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--primary);
+  color: var(--accent);
   font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-.projectLabel {
+.projectCard:hover .projectCta {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ─── DISCIPLINES ──────────────────────────────────────── */
+.disciplinesSection {
+  padding: 12rem 0;
+}
+
+.disciplinesSplit {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 8rem;
+  align-items: flex-start;
+}
+
+.disciplinesLeft {
+  position: sticky;
+  top: 120px;
+}
+
+.disciplinesRight {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.disciplineItem {
+  padding: 4rem 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+  transition: padding 0.5s ease;
+}
+
+.disciplineItem::after {
+  content: '';
   position: absolute;
-  top: 3rem;
-  left: 3rem;
-  font-size: 0.85rem;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: var(--accent);
+  transition: left 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.disciplineItem:hover::after {
+  left: 0;
+}
+
+.disciplineItem:hover {
+  padding-left: 1rem;
+}
+
+.disciplineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.disciplineNum {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1rem;
   font-weight: 700;
-  color: rgba(255,255,255,0.3);
+  color: var(--accent);
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+}
+
+.disciplineCount {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.disciplineCount strong {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+}
+
+.disciplineCount span {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.disciplineTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  text-transform: uppercase;
+  color: #fff;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+  transition: color 0.4s ease;
+}
+
+.disciplineItem:hover .disciplineTitle {
+  color: var(--accent);
+}
+
+.disciplineDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 440px;
+  transition: color 0.4s ease;
+}
+
+.disciplineItem:hover .disciplineDesc {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* ─── APPROACH ─────────────────────────────────────────── */
+.approachSection {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.approachImageWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.approachImg {
+  object-fit: cover;
+  transform-origin: center bottom;
+}
+
+.approachOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(11, 19, 36, 0.92) 0%,
+    rgba(11, 19, 36, 0.5) 60%,
+    rgba(11, 19, 36, 0.2) 100%
+  );
+}
+
+.approachContent {
+  position: relative;
   z-index: 2;
+  width: 100%;
+  padding: 8rem 0;
+}
+
+.approachTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(3rem, 6vw, 6rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: #fff;
+  letter-spacing: -0.02em;
+  margin-bottom: 2.5rem;
+}
+
+.approachTitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.approachDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 520px;
+  margin-bottom: 3rem;
+}
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
+@media (max-width: 1200px) {
+  .heroInner {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .cardWide {
+    grid-column: span 2;
+    aspect-ratio: 16/9;
+  }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem 2rem;
+  }
 }
 
 @media (max-width: 1024px) {
-  .galleryGrid {
-    grid-template-columns: repeat(2, 1fr);
-    height: auto;
+  .disciplinesSplit {
+    grid-template-columns: 1fr;
+    gap: 4rem;
   }
-  .projectCard {
-    height: 50vh;
-    border-bottom: 1px solid rgba(255,255,255,0.1);
+  .disciplinesLeft {
+    position: static;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 140px;
+    padding-bottom: 5rem;
+  }
+  .heroLineWrapper {
+    margin-top: 3rem;
+    padding-top: 2rem;
+  }
+  .statsSection {
+    padding: 5rem 0;
+  }
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .gallerySection {
+    padding-top: 6rem;
+  }
   .galleryGrid {
     grid-template-columns: 1fr;
+  }
+  .cardWide {
+    grid-column: span 1;
+    aspect-ratio: 4/3;
+  }
+  .projectCard {
+    aspect-ratio: 4/3;
+  }
+  .disciplinesSection {
+    padding: 6rem 0;
+  }
+  .disciplineTitle {
+    font-size: 2.5rem;
+  }
+  .approachSection {
+    min-height: 70vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  .statNum {
+    font-size: 3rem;
   }
 }

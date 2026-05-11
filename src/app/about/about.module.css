@@ -1,16 +1,25 @@
+/* ──────────────────────────────────────────────────────
+   About Page — enriched with GSAP scroll-animation hooks
+   ────────────────────────────────────────────────────── */
+
 .main {
   width: 100%;
   background-color: var(--bg-color);
 }
 
+/* ─── HERO ─────────────────────────────────────────────── */
 .hero {
   padding-top: 200px;
   background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
 }
 
-.heroText {
-  max-width: 1000px;
+.heroContent {
+  max-width: 900px;
   margin-bottom: 6rem;
+  position: relative;
+  z-index: 1;
 }
 
 .preTitle {
@@ -24,53 +33,98 @@
   margin-bottom: 2rem;
 }
 
+/* Word-split title */
 .mainTitle {
   font-family: var(--font-outfit), sans-serif;
-  font-size: clamp(3rem, 6vw, 6rem);
+  font-size: clamp(3.2rem, 6.5vw, 7rem);
   font-weight: 300;
-  line-height: 1.1;
+  line-height: 1.0;
   color: #fff;
-  letter-spacing: -0.02em;
+  letter-spacing: -0.03em;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 0.4em;
   margin-bottom: 3rem;
+}
+
+.wordWrap {
+  display: block;
+  overflow: hidden;
+  line-height: 1.1;
+}
+
+.word {
+  display: block;
 }
 
 .heroDesc {
   font-family: var(--font-inter), sans-serif;
-  font-size: 1.25rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 600px;
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.65);
+  max-width: 560px;
+  margin-bottom: 4rem;
 }
 
+.heroDesc strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* Scroll hint */
+.heroLineWrapper {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.heroLine {
+  flex: 1;
+  max-width: 280px;
+  height: 1px;
+  background: var(--accent);
+  transform-origin: left;
+}
+
+.heroLineLabel {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.3);
+  white-space: nowrap;
+}
+
+/* Parallax image block */
 .heroImageWrapper {
   position: relative;
   width: 100%;
   height: 90vh;
   min-height: 600px;
+  overflow: hidden;
 }
 
 .heroImage {
   object-fit: cover;
-  transition: transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-origin: center bottom;
 }
 
 .imageOverlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(10, 20, 40, 0.4);
-  mix-blend-mode: multiply;
-  transition: background-color 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+  background: linear-gradient(
+    to top,
+    rgba(17, 28, 48, 0.65) 0%,
+    rgba(17, 28, 48, 0.15) 60%,
+    transparent 100%
+  );
   pointer-events: none;
 }
 
-.heroImageWrapper:hover .imageOverlay {
-  background-color: rgba(10, 20, 40, 0.1);
-}
-
-.heroImageWrapper:hover .heroImage {
-  transform: scale(1.02);
-}
-
+/* ─── STATS ────────────────────────────────────────────── */
 .statsSection {
   padding: 8rem 0;
   background-color: var(--surface-color);
@@ -80,13 +134,13 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
 .statBox {
   text-align: left;
-  border-left: 2px solid rgba(201, 169, 110, 0.2); /* Subtle accent */
+  border-left: 2px solid rgba(201, 169, 110, 0.2);
   padding-left: 2rem;
   position: relative;
   transition: transform 0.4s ease;
@@ -103,15 +157,10 @@
   transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.statBox:hover {
-  transform: translateX(10px);
-}
+.statBox:hover { transform: translateX(10px); }
+.statBox:hover::before { height: 100%; }
 
-.statBox:hover::before {
-  height: 100%;
-}
-
-.statBox h3 {
+.statNum {
   font-family: var(--font-outfit), sans-serif;
   font-size: 4rem;
   font-weight: 300;
@@ -120,7 +169,7 @@
   line-height: 1;
 }
 
-.statBox p {
+.statLabel {
   font-family: var(--font-inter), sans-serif;
   font-size: 0.9rem;
   text-transform: uppercase;
@@ -129,6 +178,7 @@
   font-weight: 600;
 }
 
+/* ─── PHILOSOPHY ───────────────────────────────────────── */
 .philosophy {
   padding: 12rem 0;
 }
@@ -137,6 +187,12 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 6rem;
+  align-items: flex-start;
+}
+
+.philosophyLeft {
+  position: sticky;
+  top: 120px;
 }
 
 .sectionTitle {
@@ -149,31 +205,42 @@
   margin-bottom: 4rem;
 }
 
+.sectionTitle em {
+  font-style: italic;
+  color: var(--accent);
+}
+
 .philosophyRight {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  gap: 2.5rem;
   padding-top: 1rem;
 }
 
 .philosophyRight p {
-  font-size: 1.25rem;
-  line-height: 1.8;
-  color: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.85;
+  color: rgba(255, 255, 255, 0.65);
   position: relative;
   padding-left: 1.5rem;
   border-left: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
+  transition: all 0.45s ease;
 }
 
 .philosophyRight p:hover {
   border-left-color: var(--accent);
   color: #fff;
-  transform: translateX(5px);
+  transform: translateX(6px);
 }
 
+.philosophyLink {
+  padding-top: 1rem;
+}
+
+/* ─── PILLARS ──────────────────────────────────────────── */
 .pillars {
-  padding: 0 0 10rem 0;
+  padding: 0 0 10rem;
 }
 
 .pillarsGrid {
@@ -191,17 +258,22 @@
   border-right: 1px solid rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  transition: background-color 0.7s cubic-bezier(0.19, 1, 0.22, 1);
   cursor: default;
 }
 
-.pillar:last-child {
-  border-right: none;
+.pillar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(213, 182, 129, 0.04) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
 }
 
-.pillar:hover {
-  background-color: rgba(255, 255, 255, 0.03);
-}
+.pillar:last-child { border-right: none; }
+.pillar:hover { background-color: rgba(255, 255, 255, 0.025); }
+.pillar:hover::after { opacity: 1; }
 
 .pillarHeader {
   margin-bottom: 4.5rem;
@@ -215,7 +287,7 @@
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--accent);
-  opacity: 0.6;
+  opacity: 0.55;
   letter-spacing: 0.1em;
 }
 
@@ -224,6 +296,13 @@
   height: 44px;
   color: rgba(255, 255, 255, 0.2);
   transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  align-items: center;
+}
+
+.pillarIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .pillar h3 {
@@ -239,70 +318,210 @@
 }
 
 .pillar p {
-  font-size: 1.15rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.1rem;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.4);
   max-width: 420px;
   transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-/* Hover Interactions */
-.pillar:hover .pillarIcon {
+.pillar:hover .pillarIcon { color: var(--accent); transform: scale(1.15) rotate(-8deg); }
+.pillar:hover h3 { color: var(--accent); transform: translateX(14px); }
+.pillar:hover p  { color: rgba(255, 255, 255, 0.8); transform: translateX(14px); }
+
+/* ─── TIMELINE ─────────────────────────────────────────── */
+.timelineSection {
+  padding: 10rem 0 12rem;
+  position: relative;
+}
+
+.timelineWrapper {
+  position: relative;
+  margin-top: 5rem;
+}
+
+.timelineTrack {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  transform: translateX(-50%);
+}
+
+.timelineLine {
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    var(--accent),
+    rgba(213, 182, 129, 0.15)
+  );
+  transform-origin: top;
+}
+
+.milestones {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.milestone {
+  display: grid;
+  grid-template-columns: 1fr 24px 1fr;
+  align-items: center;
+  min-height: 140px;
+  position: relative;
+}
+
+/* Alternate sides */
+.milestoneLeft .milestoneCard {
+  grid-column: 1;
+  text-align: right;
+  padding-right: 4rem;
+}
+.milestoneLeft .milestoneDot {
+  grid-column: 2;
+}
+
+.milestoneRight .milestoneCard {
+  grid-column: 3;
+  text-align: left;
+  padding-left: 4rem;
+}
+.milestoneRight .milestoneDot {
+  grid-column: 2;
+}
+
+.milestoneCard {
+  padding: 2.5rem 0;
+  transition: transform 0.4s ease;
+}
+
+.milestone:hover .milestoneCard {
+  transform: scale(1.02);
+}
+
+.milestoneDot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 3px solid var(--bg-color);
+  box-shadow: 0 0 0 1px var(--accent);
+  justify-self: center;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.milestone:hover .milestoneDot {
+  box-shadow: 0 0 0 4px rgba(213, 182, 129, 0.25);
+  transform: scale(1.25);
+}
+
+.milestoneYear {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 2.5rem;
+  font-weight: 300;
   color: var(--accent);
-  transform: scale(1.15) rotate(-8deg);
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: block;
+  margin-bottom: 0.6rem;
 }
 
-.pillar:hover h3 {
-  color: var(--accent);
-  transform: translateX(15px);
+.milestoneLabel {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: 1.3rem;
+  font-weight: 400;
+  color: #fff;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
 }
 
-.pillar:hover p {
-  color: rgba(255, 255, 255, 0.85);
-  transform: translateX(15px);
+.milestoneDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.5);
+  max-width: 360px;
 }
 
+.milestoneRight .milestoneDesc { margin-left: 0; }
+.milestoneLeft .milestoneDesc  { margin-left: auto; }
+
+/* ─── RESPONSIVE ───────────────────────────────────────── */
 @media (max-width: 1200px) {
-  .pillar {
-    padding: 6rem 3rem;
-  }
-  .pillar h3 {
-    font-size: 2.5rem;
-  }
+  .pillar { padding: 6rem 3rem; }
+  .pillar h3 { font-size: 2.5rem; }
+  .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
 }
 
 @media (max-width: 1024px) {
-  .pillarsGrid {
-    grid-template-columns: 1fr;
-  }
+  .pillarsGrid { grid-template-columns: 1fr; }
   .pillar {
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 6rem 4rem;
   }
-  .pillar:last-child {
-    border-bottom: none;
+  .pillar:last-child { border-bottom: none; }
+  .pillar h3 { font-size: 3.5rem; }
+  .philosophyLeft { position: static; }
+  .philosophySplit { grid-template-columns: 1fr; gap: 3rem; }
+
+  /* Timeline to single column on tablet */
+  .timelineTrack { display: none; }
+  .milestone {
+    grid-template-columns: 1fr;
+    padding-left: 2.5rem;
+    border-left: 2px solid rgba(213, 182, 129, 0.25);
+    position: relative;
+    min-height: auto;
   }
-  .pillar h3 {
-    font-size: 3.5rem;
+  .milestoneLeft .milestoneCard,
+  .milestoneRight .milestoneCard {
+    grid-column: 1;
+    text-align: left;
+    padding: 2rem 0;
+  }
+  .milestoneLeft .milestoneDot,
+  .milestoneRight .milestoneDot {
+    display: none;
+  }
+  .milestone::before {
+    content: '';
+    position: absolute;
+    left: -7px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg-color);
+  }
+  .milestoneLeft .milestoneDesc,
+  .milestoneRight .milestoneDesc {
+    margin-left: 0;
   }
 }
 
 @media (max-width: 768px) {
   .hero { padding-top: 140px; }
   .heroImageWrapper { height: 60vh; }
-  .philosophy, .statsSection, .pillars { padding: 6rem 0; }
-  .statBox { padding-left: 1.5rem; border-left: 1px solid var(--accent); }
+  .philosophy { padding: 6rem 0; }
+  .statsSection { padding: 5rem 0; }
+  .pillars { padding: 0 0 6rem; }
   .pillar { padding: 4rem 2rem; }
   .pillar h3 { font-size: 2.5rem; }
-  
-  .statsGrid {
-    grid-template-columns: 1fr;
-    gap: 4rem;
-  }
-  
-  .philosophySplit {
-    grid-template-columns: 1fr;
-    gap: 3rem;
-  }
+  .statsGrid { grid-template-columns: 1fr 1fr; }
+  .statBox { padding-left: 1.5rem; }
+  .timelineSection { padding: 6rem 0 8rem; }
+}
+
+@media (max-width: 480px) {
+  .statsGrid { grid-template-columns: 1fr; gap: 3rem; }
+  .statNum { font-size: 3rem; }
+  .mainTitle { font-size: clamp(2.5rem, 10vw, 4rem); }
 }
