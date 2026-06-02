@@ -11,8 +11,8 @@ interface StatData {
 
 const STATS: StatData[] = [
   {
-    value: '2012',
-    label: 'Established',
+    value: '14+',
+    label: "Ans d'expérience",
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <circle cx="12" cy="12" r="10" />

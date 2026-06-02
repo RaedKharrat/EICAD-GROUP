@@ -238,7 +238,7 @@ export default function AboutClient() {
         <div className="container">
           <div className={styles.statsGrid}>
             {[
-              { val: "2012", label: "Established" },
+              { val: "14+", label: "Ans d'expérience" },
               { val: "250+", label: "Completed Projects" },
               { val: "4",    label: "Global Hubs" },
               { val: "30+",  label: "Awards Won" },
