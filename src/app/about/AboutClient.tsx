@@ -111,28 +111,34 @@ export default function AboutClient() {
         scrollTrigger: { trigger: ".js-stats-section", start: "top 75%" },
       });
 
-      // ── Philosophy split ─────────────────────────────
+      // ── Philosophy split (fade columns only; paragraphs slide — avoids stacked opacity: 0)
+      const philoTrigger = ".js-philo-section";
+      const philoScroll = () => ({
+        trigger: philoTrigger,
+        start: "top 75%",
+        once: true,
+        toggleActions: "play none none none",
+      });
       gsap.from(".js-philo-left", {
         opacity: 0,
-        x: -60,
+        x: -40,
         duration: 1.1,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".js-philo-section", start: "top 70%" },
+        scrollTrigger: philoScroll(),
       });
       gsap.from(".js-philo-right", {
         opacity: 0,
-        x: 60,
+        x: 40,
         duration: 1.1,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".js-philo-section", start: "top 70%" },
+        scrollTrigger: philoScroll(),
       });
       gsap.from(".js-philo-p", {
-        opacity: 0,
-        y: 30,
+        y: 24,
         duration: 0.8,
-        stagger: 0.2,
+        stagger: 0.15,
         ease: "power3.out",
-        scrollTrigger: { trigger: ".js-philo-section", start: "top 65%" },
+        scrollTrigger: philoScroll(),
       });
 
       // ── Pillars stagger from bottom ──────────────────
