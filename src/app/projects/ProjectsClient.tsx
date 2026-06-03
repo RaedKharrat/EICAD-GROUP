@@ -6,7 +6,6 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import CTASection from "@/components/CTASection";
 import styles from "./projects.module.css";
 import { projects } from "./project-data";
 
@@ -238,10 +237,17 @@ export default function ProjectsClient() {
       {/* ─── GALLERY ───────────────────────────────────── */}
       <section className={styles.gallerySection}>
         <div className="container">
-          <h2 className={`js-reveal-title ${styles.sectionTitle}`}>
-            Selected <br />
-            <em>Works</em>
-          </h2>
+          <header className={`js-reveal-title ${styles.sectionHeader}`}>
+            <div className={styles.sectionHeaderMain}>
+              <span className={styles.sectionEyebrow}>Our portfolio</span>
+              <h2 className={styles.sectionHeading}>
+                Selected <span className={styles.titleAccent}>work</span>
+              </h2>
+            </div>
+            <p className={styles.sectionLead}>
+              Recent homes and spaces from our studio — open any project below to see photos, story, and details.
+            </p>
+          </header>
         </div>
         <div className={styles.galleryGrid}>
           {projects.map((p, i) => {
@@ -282,10 +288,19 @@ export default function ProjectsClient() {
       {/* ─── DISCIPLINES ───────────────────────────────── */}
       <section className={`js-pillars-section ${styles.pillars}`}>
         <div className="container">
-          <h2 className={`js-pillar-title js-reveal-title ${styles.sectionTitle}`}>
-            Three <em>Disciplines</em>, <br />
-            One Vision.
-          </h2>
+          <header
+            className={`js-pillar-title js-reveal-title ${styles.sectionHeader} ${styles.sectionHeaderCompact}`}
+          >
+            <div className={styles.sectionHeaderMain}>
+              <span className={styles.sectionEyebrow}>What we offer</span>
+              <h2 className={styles.sectionHeading}>
+                Four services, <span className={styles.titleAccent}>one team</span>
+              </h2>
+            </div>
+            <p className={styles.sectionLead}>
+              Architecture, interiors, construction, and renovation — coordinated so your project stays clear from start to finish.
+            </p>
+          </header>
         </div>
         <div className={styles.pillarsGrid}>
           {disciplines.map((d) => (
@@ -340,15 +355,6 @@ export default function ProjectsClient() {
           </div>
         </div>
       </section>
-
-      {/* ─── CTA ───────────────────────────────────────── */}
-      <CTASection
-        preTitle="Start Your Project"
-        title={`Ready to <span style={{ fontWeight: '600' }}>build</span><br/>your legacy?`}
-        description="Our team of expert architects and designers is ready to bring your vision to life."
-        buttonText="Book a Consultation"
-        buttonHref="/contact"
-      />
     </div>
   );
 }

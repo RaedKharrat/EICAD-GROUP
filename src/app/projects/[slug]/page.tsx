@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { projects } from "../project-data";
+import ProjectGallery from "./ProjectGallery";
 import styles from "./project-detail.module.css";
 
 interface ProjectPageProps {
@@ -122,19 +123,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             <h2>Project imagery</h2>
           </div>
 
-          <div className={styles.galleryGrid}>
-            {project.gallery.map((image, index) => (
-              <div key={image} className={styles.galleryItem}>
-                <Image
-                  src={image}
-                  alt={`${project.title} detail ${index + 1}`}
-                  fill
-                  className={styles.galleryImage}
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 48vw, 33vw"
-                />
-              </div>
-            ))}
-          </div>
+          <ProjectGallery images={project.gallery} projectTitle={project.title} />
         </div>
       </section>
     </main>

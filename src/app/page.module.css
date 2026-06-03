@@ -425,6 +425,7 @@
   background-color: var(--surface-color);
   transition: all 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
   border: 0.5px solid rgba(255, 255, 255, 0.05); /* Very subtle grid lines */
+  cursor: pointer;
 }
 
 /* Sliding background overlay */
@@ -687,13 +688,106 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  align-items: flex-start;
   height: 100%;
+  pointer-events: none;
 }
 
-.bentoItem:hover .bentoContent {
+.bentoItem:hover .bentoContent,
+.bentoItem:focus-within .bentoContent {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+
+.bentoContent a {
+  pointer-events: auto;
+}
+
+/* Resting state — service name only */
+.cardTeaser {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  line-height: 1.1;
+  transition:
+    opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bentoLarge .cardTeaser {
+  font-size: clamp(2.25rem, 4vw, 3.25rem);
+}
+
+.bentoItem:hover .cardTeaser,
+.bentoItem:focus-within .cardTeaser {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Hover reveal — label, headline, body, CTA */
+.cardReveal {
+  position: absolute;
+  inset: 0;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(24px);
+  transition:
+    opacity 0.5s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.55s cubic-bezier(0.19, 1, 0.22, 1),
+    visibility 0.5s;
+}
+
+.bentoItem:hover .cardReveal,
+.bentoItem:focus-within .cardReveal {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.cardReveal > * {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.45s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.45s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bentoItem:hover .cardReveal > *,
+.bentoItem:focus-within .cardReveal > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bentoItem:hover .cardReveal .cardLabel,
+.bentoItem:focus-within .cardReveal .cardLabel {
+  transition-delay: 0.06s;
+}
+
+.bentoItem:hover .cardReveal h3,
+.bentoItem:focus-within .cardReveal h3 {
+  transition-delay: 0.14s;
+}
+
+.bentoItem:hover .cardReveal p,
+.bentoItem:focus-within .cardReveal p {
+  transition-delay: 0.22s;
+}
+
+.bentoItem:hover .cardReveal .bentoLink,
+.bentoItem:focus-within .cardReveal .bentoLink {
+  transition-delay: 0.3s;
 }
 
 .cardLabel {
@@ -701,54 +795,38 @@
   font-weight: 700;
   letter-spacing: 0.2em;
   color: var(--primary);
-  opacity: 0.8;
   display: block;
   margin-bottom: 1rem;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.bentoItem:hover .cardLabel {
-  opacity: 1;
-  transform: none;
-}
-
-.bentoContent h3 {
+.cardReveal h3 {
   font-size: 2.4rem;
   font-weight: 300;
   text-transform: uppercase;
   margin-bottom: 1.2rem;
-  color: #ffffff;
+  color: rgba(255, 255, 255, 0.95);
   font-family: var(--font-outfit), sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.1;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  text-align: left;
-}
-
-.bentoItem:hover .bentoContent h3 {
-  color: rgba(255, 255, 255, 0.95);
-  transform: none;
   text-align: center;
 }
 
-.bentoLarge .bentoContent h3 {
+.bentoLarge .cardReveal h3 {
   font-size: 3.8rem;
 }
 
-.bentoContent p {
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+.cardReveal p {
   font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.7);
-  max-width: 320px;
-  line-height: 1.6;
-  text-align: left;
+  color: rgba(255, 255, 255, 0.85);
+  max-width: 36rem;
+  line-height: 1.65;
+  text-align: center;
+  margin: 0 auto;
 }
 
-.bentoItem:hover .bentoContent p {
-  color: rgba(255, 255, 255, 0.85);
-  transform: none;
-  text-align: center;
-  max-width: 100%;
+.bentoItem:focus-visible {
+  outline: 2px solid rgba(59, 130, 246, 0.6);
+  outline-offset: -2px;
 }
 
 .badgeRow {
@@ -803,10 +881,10 @@
   letter-spacing: 0.1em;
   color: var(--primary);
   text-decoration: none;
-  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.bentoItem:hover .bentoLink {
+.bentoItem:hover .bentoLink,
+.bentoItem:focus-within .bentoLink {
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -816,8 +894,22 @@
   transition: all 0.5s ease;
 }
 
-.bentoItem:hover .bentoLink svg {
+.bentoItem:hover .bentoLink svg,
+.bentoItem:focus-within .bentoLink svg {
   stroke: rgba(255, 255, 255, 0.9);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardTeaser,
+  .cardReveal,
+  .cardReveal > * {
+    transition-duration: 0.01ms;
+  }
+
+  .bentoItem:hover .cardReveal > *,
+  .bentoItem:focus-within .cardReveal > * {
+    transition-delay: 0s;
+  }
 }
 
 .bentoSideArrow {

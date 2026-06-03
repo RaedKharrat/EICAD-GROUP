@@ -131,7 +131,7 @@
 
 /* ─── STATS ────────────────────────────────────────────── */
 .statsSection {
-  padding: 3.5rem 0;
+  padding: 4.5rem 0;
   background-color: var(--surface-color);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -194,9 +194,69 @@
 
 /* ─── GALLERY ──────────────────────────────────────────── */
 .gallerySection {
-  padding: 6rem 0 0;
+  padding: clamp(5rem, 8vw, 8rem) 0 clamp(5rem, 7vw, 7rem);
 }
 
+.gallerySection > .container {
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
+}
+
+/* Section headers — friendly, split layout */
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: clamp(2rem, 4vw, 4rem);
+  margin-bottom: 0;
+  padding-bottom: clamp(2rem, 3vw, 3rem);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.sectionHeaderCompact {
+  margin-bottom: 0;
+}
+
+.sectionHeaderMain {
+  flex: 1;
+  min-width: 0;
+}
+
+.sectionEyebrow {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  color: var(--primary);
+  display: block;
+  margin-bottom: 1.15rem;
+}
+
+.sectionHeading {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(2rem, 3.8vw, 3.25rem);
+  font-weight: 300;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+
+.titleAccent {
+  color: var(--primary);
+  font-weight: 400;
+}
+
+.sectionLead {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 22rem;
+  margin: 0;
+  text-align: right;
+}
+
+/* Legacy — approach / other blocks */
 .sectionTitle {
   font-family: var(--font-outfit), sans-serif;
   font-size: clamp(2.1rem, 4.6vw, 3.6rem);
@@ -208,8 +268,8 @@
 }
 
 .sectionTitle em {
-  font-style: italic;
-  color: var(--accent);
+  font-style: normal;
+  color: var(--primary);
 }
 
 .galleryGrid {
@@ -217,6 +277,7 @@
   grid-template-columns: repeat(12, 1fr);
   grid-auto-rows: 400px;
   width: 100%;
+  margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
 .projectCard {
@@ -372,7 +433,11 @@
 
 /* ─── DISCIPLINES ──────────────────────────────────────── */
 .pillars {
-  padding: 0 0 10rem;
+  padding: clamp(5rem, 8vw, 7rem) 0 clamp(6rem, 9vw, 10rem);
+}
+
+.pillars > .container {
+  margin-bottom: clamp(2.5rem, 4vw, 4rem);
 }
 
 .pillarsGrid {
@@ -589,14 +654,36 @@
     padding-top: 2rem;
   }
   .statsSection {
-    padding: 3rem 0;
+    padding: 3.5rem 0;
   }
   .statsGrid {
     grid-template-columns: 1fr 1fr;
     gap: 2rem;
   }
   .gallerySection {
-    padding-top: 4.5rem;
+    padding: 4.5rem 0 4.5rem;
+  }
+  .gallerySection > .container {
+    margin-bottom: 2.5rem;
+  }
+  .galleryGrid {
+    margin-top: 1.5rem;
+  }
+  .pillars {
+    padding: 4rem 0 5rem;
+  }
+  .pillars > .container {
+    margin-bottom: 2.5rem;
+  }
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding-bottom: 2rem;
+  }
+  .sectionLead {
+    text-align: left;
+    max-width: 100%;
   }
   .sectionTitle {
     margin-bottom: 2rem;
@@ -624,9 +711,6 @@
     top: 1.25rem;
     left: 1.25rem;
     font-size: 0.7rem;
-  }
-  .pillars {
-    padding: 0 0 6rem;
   }
   .pillar {
     padding: 4rem 2rem;
@@ -664,6 +748,16 @@
   }
   .statLabel {
     font-size: 0.75rem;
+  }
+  .sectionHeading {
+    font-size: clamp(1.75rem, 5vw, 2.25rem);
+  }
+  .sectionEyebrow {
+    font-size: 0.7rem;
+    margin-bottom: 0.65rem;
+  }
+  .sectionLead {
+    font-size: 0.95rem;
   }
   .sectionTitle {
     font-size: clamp(1.6rem, 4vw, 2.5rem);

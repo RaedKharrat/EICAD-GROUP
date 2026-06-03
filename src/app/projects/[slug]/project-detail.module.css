@@ -236,6 +236,12 @@
   overflow: hidden;
   border-radius: 1.5rem;
   background: rgba(255, 255, 255, 0.04);
+  border: none;
+  padding: 0;
+  width: 100%;
+  cursor: zoom-in;
+  text-align: left;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
 }
 
 .galleryItem:nth-child(1) {
@@ -243,13 +249,203 @@
   min-height: 420px;
 }
 
+.galleryItem:hover,
+.galleryItem:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 1px rgba(203, 164, 101, 0.35);
+}
+
+.galleryItem:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 3px;
+}
+
 .galleryImage {
   object-fit: cover;
-  transition: transform 0.9s ease;
+  transition: transform 0.9s ease, opacity 0.35s ease;
 }
 
 .galleryItem:hover .galleryImage {
   transform: scale(1.05);
+  opacity: 0.88;
+}
+
+.galleryExpandHint {
+  position: absolute;
+  inset: auto 1.25rem 1.25rem auto;
+  z-index: 2;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.55rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(17, 28, 48, 0.82);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+  pointer-events: none;
+}
+
+.galleryExpandHint svg {
+  width: 14px;
+  height: 14px;
+}
+
+.galleryItem:hover .galleryExpandHint,
+.galleryItem:focus-visible .galleryExpandHint {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(1rem, 3vw, 2.5rem);
+  background: rgba(11, 19, 36, 0.94);
+  backdrop-filter: blur(12px);
+  animation: lightboxFadeIn 0.3s ease;
+}
+
+@keyframes lightboxFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxInner {
+  position: relative;
+  width: min(1200px, 100%);
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: lightboxScaleIn 0.35s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+@keyframes lightboxScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.lightboxImageWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  max-height: calc(92vh - 4rem);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lightboxImage {
+  object-fit: contain;
+}
+
+.lightboxCaption {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin: 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.lightboxCounter {
+  color: var(--primary);
+  font-weight: 600;
+}
+
+.lightboxClose {
+  position: absolute;
+  top: -0.25rem;
+  right: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgba(17, 28, 48, 0.9);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.lightboxClose:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #111c30;
+  transform: scale(1.05);
+}
+
+.lightboxClose svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lightboxNav {
+  position: absolute;
+  top: 50%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-top: -24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+  background: rgba(17, 28, 48, 0.85);
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+.lightboxNav:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #111c30;
+}
+
+.lightboxNav svg {
+  width: 22px;
+  height: 22px;
+}
+
+.lightboxNavPrev {
+  left: -1.25rem;
+}
+
+.lightboxNavNext {
+  right: -1.25rem;
 }
 
 @media (max-width: 1024px) {
@@ -281,6 +477,19 @@
 
   .galleryItem:nth-child(1) {
     grid-column: auto;
+  }
+
+  .lightboxNavPrev {
+    left: 0.5rem;
+  }
+
+  .lightboxNavNext {
+    right: 0.5rem;
+  }
+
+  .lightboxClose {
+    top: 0.5rem;
+    right: 0.5rem;
   }
 }
 

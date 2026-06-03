@@ -114,35 +114,58 @@ export default function Home() {
         </div>
 
         <div className={styles.bentoGridFull}>
-          <div className={`${styles.bentoItem} ${styles.bentoLarge}`}>
+          <div className={`${styles.bentoItem} ${styles.bentoLarge}`} tabIndex={0}>
             <div className={styles.bentoContent}>
-              <span className={styles.cardLabel}>01 — ARCHITECTURE</span>
-              <h3>Spaces that feel<br />effortlessly modern</h3>
-              <p>We design homes and buildings where comfort meets clean, lasting style.</p>
-              <Link href="/contact" className={styles.bentoLink}>
-                Start Your Journey
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </Link>
+              <span className={styles.cardTeaser}>Architecture</span>
+              <div className={styles.cardReveal}>
+                <span className={styles.cardLabel}>01 — ARCHITECTURE</span>
+                <h3>Built around<br />how you live</h3>
+                <p>
+                  From concept sketch to permit-ready drawings — we shape homes and commercial spaces with balanced proportions, natural light, and detailing built to last.
+                </p>
+                <Link href="/contact" className={styles.bentoLink}>
+                  Discuss your project
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </Link>
+              </div>
             </div>
             <Image src="https://images.unsplash.com/photo-1487958449943-2429e8be8625" alt="Architecture" fill sizes="(max-width: 1024px) 100vw, 66vw" className={styles.bentoBg} />
             <div className={styles.bentoOverlay}></div>
           </div>
 
-          <div className={styles.bentoItem}>
+          <div className={styles.bentoItem} tabIndex={0}>
             <div className={styles.bentoContent}>
-              <span className={styles.cardLabel}>02 — INTERIORS</span>
-              <h3>Interiors made<br />for real life</h3>
-              <p>Materials, light, and layout chosen to match how you actually live and work.</p>
+              <span className={styles.cardTeaser}>Interior Design</span>
+              <div className={styles.cardReveal}>
+                <span className={styles.cardLabel}>02 — INTERIOR DESIGN</span>
+                <h3>One story<br />across every room</h3>
+                <p>
+                  Every finish, fixture, and layout choice supports how you live day to day — cohesive palettes, custom pieces, and lighting that feel intentional, never copied from a catalogue.
+                </p>
+                <Link href="/contact" className={styles.bentoLink}>
+                  Explore interior design
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </Link>
+              </div>
             </div>
             <Image src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6" alt="Interior Design" fill sizes="(max-width: 1024px) 50vw, 33vw" className={styles.bentoBg} />
             <div className={styles.bentoOverlay}></div>
           </div>
 
-          <div className={styles.bentoItem}>
+          <div className={styles.bentoItem} tabIndex={0}>
             <div className={styles.bentoContent}>
-              <span className={styles.cardLabel}>03 — CONSTRUCTION</span>
-              <h3>Built with<br />care on site</h3>
-              <p>We coordinate execution so your project stays on track and true to the plan.</p>
+              <span className={styles.cardTeaser}>Construction</span>
+              <div className={styles.cardReveal}>
+                <span className={styles.cardLabel}>03 — CONSTRUCTION</span>
+                <h3>On site,<br />on spec</h3>
+                <p>
+                  We oversee contractors, milestones, and on-site quality so the build matches the design — clearer communication, tighter timelines, and fewer costly surprises along the way.
+                </p>
+                <Link href="/contact" className={styles.bentoLink}>
+                  Talk construction
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </Link>
+              </div>
             </div>
             <Image
               src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5"
@@ -154,15 +177,20 @@ export default function Home() {
             <div className={styles.bentoOverlay}></div>
           </div>
 
-          <div className={styles.bentoItem}>
+          <div className={styles.bentoItem} tabIndex={0}>
             <div className={styles.bentoContent}>
-              <span className={styles.cardLabel}>04 — RENOVATION</span>
-              <h3>Refresh what<br />you already love</h3>
-              <p>Transform existing spaces without starting from scratch — smarter, smoother upgrades.</p>
-              <Link href="/contact" className={styles.bentoLink}>
-                Plan a Renovation
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
-              </Link>
+              <span className={styles.cardTeaser}>Renovation</span>
+              <div className={styles.cardReveal}>
+                <span className={styles.cardLabel}>04 — RENOVATION</span>
+                <h3>More value<br />from what you have</h3>
+                <p>
+                  We unlock more from the structure you already have — smarter layouts, targeted structural work, and upgraded finishes without tearing everything down or living through a full rebuild.
+                </p>
+                <Link href="/contact" className={styles.bentoLink}>
+                  Plan a renovation
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><line x1="5" y1="12" x2="19" y2="12" /><polyline points="12 5 19 12 12 19" /></svg>
+                </Link>
+              </div>
             </div>
             <Image
               src="https://images.unsplash.com/photo-1600566752355-35792bedcfea"

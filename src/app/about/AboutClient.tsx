@@ -6,7 +6,6 @@ import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
-import CTASection from "@/components/CTASection";
 import FAQSection from "@/components/FAQSection";
 import { siteConfig } from "@/lib/siteConfig";
 import styles from "./about.module.css";
@@ -284,15 +283,6 @@ export default function AboutClient() {
 
       {/* ─── FAQ ────────────────────────────────────────── */}
       <FAQSection />
-
-      {/* ─── CTA ───────────────────────────────────────── */}
-      <CTASection
-        preTitle="Work With Us"
-        title={`Ready to <span style={{ fontWeight: '600' }}>build</span><br/>your legacy?`}
-        description="Our team of expert architects and designers is ready to bring your vision to life."
-        buttonText="Start Your Journey"
-        buttonHref="/contact"
-      />
     </div>
   );
 }
