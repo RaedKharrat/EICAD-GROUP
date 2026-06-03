@@ -2,6 +2,7 @@
 
 import React from 'react';
 import styles from './StatsMarquee.module.css';
+import { siteConfig } from '@/lib/siteConfig';
 
 interface StatData {
   value: string;
@@ -12,7 +13,7 @@ interface StatData {
 const STATS: StatData[] = [
   {
     value: '14+',
-    label: "Ans d'expérience",
+    label: 'Years of expertise',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <circle cx="12" cy="12" r="10" />
@@ -21,8 +22,8 @@ const STATS: StatData[] = [
     ),
   },
   {
-    value: '250+',
-    label: 'Completed Projects',
+    value: String(siteConfig.services.length),
+    label: 'Core services',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <rect x="3" y="3" width="7" height="7" />
@@ -33,8 +34,18 @@ const STATS: StatData[] = [
     ),
   },
   {
-    value: '4',
-    label: 'Global Hubs',
+    value: '2',
+    label: 'Tunisia & Canada',
+    icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+        <circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+  },
+  {
+    value: 'Online',
+    label: 'Worldwide',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
         <circle cx="12" cy="12" r="10" />
@@ -46,7 +57,6 @@ const STATS: StatData[] = [
 ];
 
 export default function StatsMarquee() {
-  // Duplicate stats to create a seamless infinite loop
   const marqueeItems = [...STATS, ...STATS, ...STATS, ...STATS];
 
   return (

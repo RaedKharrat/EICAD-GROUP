@@ -38,7 +38,7 @@ export default function Navbar() {
 
         {/* Desktop CTA & Mobile Toggle */}
         <div className={styles.navActions}>
-          <Link href="/contact" className={styles.navBtn}>
+          <Link href="/contact" className={`btn btn-accent ${styles.navBtn}`}>
             Let's Talk
           </Link>
           

@@ -36,7 +36,7 @@
 /* Word-split title */
 .mainTitle {
   font-family: var(--font-outfit), sans-serif;
-  font-size: clamp(3.2rem, 6.5vw, 7rem);
+  font-size: clamp(2.5rem, 5.5vw, 5.5rem);
   font-weight: 300;
   line-height: 1.0;
   color: #fff;
@@ -62,7 +62,7 @@
   font-size: 1.2rem;
   line-height: 1.85;
   color: rgba(255, 255, 255, 0.65);
-  max-width: 560px;
+  max-width: 100%;
   margin-bottom: 4rem;
 }
 
@@ -126,7 +126,7 @@
 
 /* ─── STATS ────────────────────────────────────────────── */
 .statsSection {
-  padding: 8rem 0;
+  padding: 3.5rem 0;
   background-color: var(--surface-color);
   border-top: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
@@ -135,15 +135,18 @@
 .statsGrid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 2rem;
+  gap: 3rem;
 }
 
 .statBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   text-align: left;
-  border-left: 2px solid rgba(201, 169, 110, 0.2);
-  padding-left: 2rem;
+  border-left: 2px solid rgba(201, 169, 110, 0.15);
+  padding-left: 1.75rem;
   position: relative;
-  transition: transform 0.4s ease;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .statBox::before {
@@ -157,12 +160,18 @@
   transition: height 0.6s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.statBox:hover { transform: translateX(10px); }
-.statBox:hover::before { height: 100%; }
+.statBox:hover {
+  transform: translateX(8px);
+  border-left-color: rgba(201, 169, 110, 0.5);
+}
+
+.statBox:hover::before {
+  height: 100%;
+}
 
 .statNum {
   font-family: var(--font-outfit), sans-serif;
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 300;
   color: #fff;
   margin-bottom: 0.5rem;
@@ -171,10 +180,10 @@
 
 .statLabel {
   font-family: var(--font-inter), sans-serif;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.15em;
-  color: var(--accent);
+  color: rgba(201, 169, 110, 0.8);
   font-weight: 600;
 }
 
@@ -455,7 +464,13 @@
 @media (max-width: 1200px) {
   .pillar { padding: 6rem 3rem; }
   .pillar h3 { font-size: 2.5rem; }
-  .statsGrid { grid-template-columns: repeat(2, 1fr); gap: 3rem 2rem; }
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+  }
+  .statNum {
+    font-size: 2.5rem;
+  }
 }
 
 @media (max-width: 1024px) {
@@ -511,17 +526,23 @@
   .hero { padding-top: 140px; }
   .heroImageWrapper { height: 60vh; }
   .philosophy { padding: 6rem 0; }
-  .statsSection { padding: 5rem 0; }
+  .statsSection { padding: 3rem 0; }
   .pillars { padding: 0 0 6rem; }
   .pillar { padding: 4rem 2rem; }
   .pillar h3 { font-size: 2.5rem; }
-  .statsGrid { grid-template-columns: 1fr 1fr; }
-  .statBox { padding-left: 1.5rem; }
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
   .timelineSection { padding: 6rem 0 8rem; }
 }
 
 @media (max-width: 480px) {
-  .statsGrid { grid-template-columns: 1fr; gap: 3rem; }
-  .statNum { font-size: 3rem; }
+  .statsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  .statNum { font-size: 2.5rem; }
+  .statLabel { font-size: 0.75rem; }
   .mainTitle { font-size: clamp(2.5rem, 10vw, 4rem); }
 }

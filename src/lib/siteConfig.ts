@@ -1,7 +1,19 @@
 export const siteConfig = {
   companyName: "EICAD Group",
-  shortDescription: "EICAD is a group of architecture companies.",
-  services: ["Interior", "Architecture", "Building"],
+  //tagline: "Designing modern living with architectural precision",
+  locationsLine: "Tunisia · Canada · Worldwide Online",
+  experienceShort: "14+ years of expertise",
+  shortDescription:
+    "We're a team of architects and designers who turn thoughtful ideas into spaces you'll love living and working in.",
+  aboutLead:
+    "Behind EICAD is a close-knit team of architects and designers — not a faceless corporation. We listen first, design with care, and stay with you from the first sketch to the final walkthrough.",
+  services: ["Architecture", "Construction", "Interior Design", "Renovation"],
+  eco: {
+    badge: "Coming Soon",
+    title: "Eco Projects",
+    description:
+      "Coming soon — project details revealed at groundbreaking.",
+  },
   contact: {
     email: "Contact.eicadgroup@gmail.com",
     phones: [

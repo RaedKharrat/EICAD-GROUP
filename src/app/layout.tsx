@@ -17,7 +17,8 @@ const asimovian = localFont({
 
 export const metadata: Metadata = {
   title: "EICAD Group | Architecture & Design Platform",
-  description: "Designing Spaces That Inspire. Luxury, minimalist, and high-end architecture and interior design.",
+  description:
+    "Designing spaces that inspire. Architecture, construction, interior design, and renovation — Tunisia, Canada, and worldwide online.",
 };
 
 export default function RootLayout({

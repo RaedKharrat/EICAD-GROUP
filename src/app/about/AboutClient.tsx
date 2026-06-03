@@ -47,13 +47,7 @@ const pillars = [
   },
 ];
 
-const milestones = [
-  { year: "2012", label: "Founded in Tunis", desc: "EICAD Group established with a vision to redefine architectural excellence in North Africa." },
-  { year: "2015", label: "International Expansion", desc: "Opened our Canadian hub in Montréal, bridging Mediterranean design with North American precision." },
-  { year: "2018", label: "250 Projects Milestone", desc: "Celebrated the completion of our 250th project — a portfolio spanning residential, commercial & cultural landmarks." },
-  { year: "2022", label: "30+ Awards", desc: "Recognised globally with over 30 prestigious architecture and design awards across 4 countries." },
-  { year: "2024", label: "The Future", desc: "Expanding into sustainable smart-home architecture and mixed-use urban developments." },
-];
+
 
 // ────────────────────────────────────────────────────────
 export default function AboutClient() {
@@ -101,15 +95,7 @@ export default function AboutClient() {
         },
       });
 
-      // ── Stats section ────────────────────────────────
-      gsap.from(".js-stat-box", {
-        opacity: 0,
-        y: 50,
-        duration: 0.9,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: { trigger: ".js-stats-section", start: "top 75%" },
-      });
+
 
       // ── Philosophy split (fade columns only; paragraphs slide — avoids stacked opacity: 0)
       const philoTrigger = ".js-philo-section";
@@ -156,25 +142,7 @@ export default function AboutClient() {
         start: "top 85%",
       });
 
-      // ── Timeline items stagger ───────────────────────
-      ScrollTrigger.batch(".js-milestone", {
-        onEnter: (els) =>
-          gsap.to(els, { opacity: 1, x: 0, stagger: 0.15, duration: 0.9, ease: "power3.out" }),
-        start: "top 85%",
-      });
 
-      // ── Timeline line draw ───────────────────────────
-      gsap.from(".js-timeline-line", {
-        scaleY: 0,
-        transformOrigin: "top",
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".js-timeline-section",
-          start: "top 70%",
-          end: "bottom 60%",
-          scrub: 1.2,
-        },
-      });
 
       // ── Generic section title reveals ────────────────
       gsap.utils.toArray<HTMLElement>(".js-reveal-title").forEach((el) => {
@@ -197,18 +165,20 @@ export default function AboutClient() {
       <section className={styles.hero}>
         <div className="container">
           <div className={styles.heroContent}>
-            <span className={`js-pre-title ${styles.preTitle}`}>About EICAD</span>
+            <span className={`js-pre-title ${styles.preTitle}`}>Meet the team</span>
             <h1 className={`js-main-title ${styles.mainTitle}`}>
-              {["We", "shape", "the", "future", "of", "modern", "living."].map((w) => (
+              {["People", "behind", "every", "space", "we", "create."].map((w) => (
                 <span key={w} className={styles.wordWrap}>
                   <span className={`js-word ${styles.word}`}>{w}</span>
                 </span>
               ))}
             </h1>
             <p className={`js-hero-desc ${styles.heroDesc}`}>
-              {siteConfig.shortDescription}
+              {siteConfig.aboutLead}
               <br /><br />
-              Our expertise spans: <strong>{siteConfig.services.join(", ")}</strong>.
+              <strong>{siteConfig.locationsLine}</strong>
+              <br />
+              What we do: <strong>{siteConfig.services.join(" · ")}</strong>.
             </p>
 
             {/* Hero line hint */}
@@ -238,13 +208,22 @@ export default function AboutClient() {
         <div className="container">
           <div className={styles.statsGrid}>
             {[
-              { val: "14+", label: "Ans d'expérience" },
-              { val: "250+", label: "Completed Projects" },
-              { val: "4",    label: "Global Hubs" },
-              { val: "30+",  label: "Awards Won" },
+              { val: 14, suf: "+", label: "Years of expertise", countUp: true },
+              { val: 4, suf: "", label: "Core services", countUp: true },
+              { val: 2, suf: "", label: "Tunisia & Canada", countUp: true },
+              { text: "Online", label: "Worldwide", countUp: false },
             ].map((s, i) => (
-              <div key={i} className={`js-stat-box ${styles.statBox}`}>
-                <h3 className={styles.statNum}>{s.val}</h3>
+              <div key={i} className={styles.statBox}>
+                <h3 className={styles.statNum}>
+                  {"countUp" in s && s.countUp ? (
+                    <span>
+                      {s.val}
+                      {s.suf}
+                    </span>
+                  ) : (
+                    <span>{s.text}</span>
+                  )}
+                </h3>
                 <p className={styles.statLabel}>{s.label}</p>
               </div>
             ))}
@@ -300,42 +279,6 @@ export default function AboutClient() {
               <p>{p.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ─── TIMELINE ──────────────────────────────────── */}
-      <section className={`js-timeline-section ${styles.timelineSection}`}>
-        <div className="container">
-          <h2 className={`js-reveal-title ${styles.sectionTitle}`}>
-            Our <em>Journey</em>
-          </h2>
-
-          <div className={styles.timelineWrapper}>
-            {/* Vertical spine */}
-            <div className={styles.timelineTrack}>
-              <div className={`js-timeline-line ${styles.timelineLine}`} />
-            </div>
-
-            {/* Milestone items */}
-            <div className={styles.milestones}>
-              {milestones.map((m, i) => (
-                <div
-                  key={m.year}
-                  className={`js-milestone ${styles.milestone} ${
-                    i % 2 === 0 ? styles.milestoneLeft : styles.milestoneRight
-                  }`}
-                  style={{ opacity: 0, transform: i % 2 === 0 ? "translateX(-40px)" : "translateX(40px)" }}
-                >
-                  <div className={styles.milestoneCard}>
-                    <span className={styles.milestoneYear}>{m.year}</span>
-                    <h3 className={styles.milestoneLabel}>{m.label}</h3>
-                    <p className={styles.milestoneDesc}>{m.desc}</p>
-                  </div>
-                  <div className={styles.milestoneDot} />
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

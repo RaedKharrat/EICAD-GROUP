@@ -61,8 +61,9 @@ export default function Footer() {
           <div className={styles.column}>
             <h3>LOCATION</h3>
             <p className={styles.locationText}>
-              128 RUE DE RIVOLI<br />
-              75001 PARIS, FRANCE
+              TUNIS, TUNISIA<br />
+              MONTRÉAL, CANADA<br />
+              <span style={{ opacity: 0.65 }}>{siteConfig.locationsLine}</span>
             </p>
           </div>
         </div>

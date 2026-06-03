@@ -75,6 +75,42 @@
   text-align: center;
 }
 
+.heroTagline {
+  max-width: 640px;
+  margin: 1.5rem auto 0;
+  font-family: var(--font-inter), sans-serif;
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.heroCtas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.heroCtaPrimary,
+.heroCtaSecondary {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+}
+
+.heroCtaSecondary {
+  border-color: rgba(255, 255, 255, 0.35);
+  color: #fff;
+}
+
+.heroCtaSecondary:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
 .heroBottom {
   display: flex;
   justify-content: space-between;
@@ -231,6 +267,15 @@
   flex: 1;
 }
 
+.experienceIntro {
+  max-width: 520px;
+  margin-top: 1.5rem;
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.6);
+}
+
 .experienceHeader {
   margin-bottom: 4rem;
 }
@@ -268,14 +313,46 @@
   flex-direction: column;
   justify-content: flex-end;
   background-color: transparent;
+  position: relative;
+  overflow: hidden;
 }
 
 .experienceColumn:last-child {
   border-right: none;
 }
 
-.experienceColumn:hover {
-  background-color: rgba(255, 255, 255, 0.05);
+/* Sliding background overlay */
+.experienceColumn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.15) 100%);
+  border-right: 1px solid rgba(59, 130, 246, 0.3);
+  z-index: 0;
+  transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Alternate animation direction based on column position */
+.experienceColumn:nth-child(odd)::before {
+  left: 0;
+  right: auto;
+}
+
+.experienceColumn:nth-child(even)::before {
+  left: auto;
+  right: 0;
+}
+
+.experienceColumn:hover::before {
+  width: 100%;
+}
+
+.expContent {
+  position: relative;
+  z-index: 1;
 }
 
 .expContent h3 {
@@ -286,6 +363,14 @@
   color: var(--primary);
   font-weight: 600;
   font-family: var(--font-outfit), sans-serif;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.experienceColumn:hover .expContent h3 {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(4px);
 }
 
 .expContent p {
@@ -293,6 +378,14 @@
   color: rgba(255, 255, 255, 0.7);
   line-height: 1.6;
   max-width: 240px;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.experienceColumn:hover .expContent p {
+  color: rgba(255, 255, 255, 0.85);
+  transform: translateX(4px);
 }
 
 /* ─── Services / Bento Section (FULL WIDTH) ─── */
@@ -334,9 +427,37 @@
   border: 0.5px solid rgba(255, 255, 255, 0.05); /* Very subtle grid lines */
 }
 
+/* Sliding background overlay */
+.bentoItem::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.2) 0%, rgba(37, 99, 235, 0.12) 100%);
+  border: 0.5px solid rgba(59, 130, 246, 0.25);
+  z-index: 0;
+  transition: width 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* Alternate animation direction */
+.bentoItem:nth-child(odd)::before {
+  left: 0;
+  right: auto;
+}
+
+.bentoItem:nth-child(even):not(.bentoLarge):not(.bentoWide)::before {
+  left: auto;
+  right: 0;
+}
+
+.bentoItem:hover::before {
+  width: 100%;
+}
+
 .bentoItem:hover {
   z-index: 10;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
 }
 
 .bentoLarge {
@@ -346,6 +467,11 @@
 
 .bentoItem:not(.bentoLarge) {
   grid-column: span 4;
+}
+
+/* Make 4th item (Renovation) full width */
+.bentoItem:nth-child(4) {
+  grid-column: span 12;
 }
 
 .bentoWide {
@@ -393,6 +519,136 @@
   height: 18px !important;
 }
 
+.bentoAccentLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1rem 2.5rem;
+  background-color: var(--bg-color);
+  color: #fff !important;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: background-color 0.35s ease, transform 0.35s ease;
+}
+
+.bentoAccentLink:hover {
+  background-color: #000;
+  transform: translateY(-2px);
+}
+
+/* ─── Eco (coming soon) ─── */
+.ecoSection {
+  padding: 8rem 0;
+  background-color: var(--bg-color);
+  position: relative;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.ecoBgWrapper {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ecoBgImage {
+  object-fit: cover;
+  filter: blur(8px) brightness(0.7);
+  transition: filter 0.6s ease;
+}
+
+.ecoSection:hover .ecoBgImage {
+  filter: blur(5px) brightness(0.75);
+}
+
+.ecoOverlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(17, 28, 48, 0.75) 0%,
+    rgba(17, 28, 48, 0.92) 100%
+  );
+  z-index: 1;
+}
+
+.ecoCard {
+  text-align: center;
+  padding: 4rem 3rem;
+  border: 1px solid rgba(59, 130, 246, 0.15);
+  background: rgba(59, 130, 246, 0.08);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  max-width: 700px;
+  z-index: 2;
+  position: relative;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.ecoCard:hover {
+  background: rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.25);
+  transform: translateY(-8px);
+}
+
+.ecoBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(59, 130, 246, 1);
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(59, 130, 246, 0.15);
+  border-radius: 4px;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  transition: all 0.4s ease;
+}
+
+.ecoCard:hover .ecoBadge {
+  background: rgba(59, 130, 246, 0.2);
+  color: rgba(255, 255, 255, 1);
+}
+
+.ecoTitle {
+  font-family: var(--font-outfit), sans-serif;
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 300;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  transition: color 0.4s ease;
+}
+
+.ecoCard:hover .ecoTitle {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.ecoDesc {
+  font-family: var(--font-inter), sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.75);
+  max-width: 520px;
+  margin: 0 auto;
+  transition: color 0.4s ease;
+}
+
+.ecoCard:hover .ecoDesc {
+  color: rgba(255, 255, 255, 0.85);
+}
+
 .bentoAccent:hover .bentoBg {
   opacity: 0.2;
 }
@@ -404,7 +660,7 @@
 }
 
 .bentoItem:hover .bentoBg {
-  opacity: 0.75;
+  opacity: 0;
   transform: scale(1.05);
 }
 
@@ -413,6 +669,11 @@
   inset: 0;
   background: linear-gradient(to top, rgba(17, 28, 48, 0.95) 0%, transparent 60%);
   z-index: 1;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bentoItem:hover .bentoOverlay {
+  background: rgba(17, 28, 48, 0.98);
 }
 
 .bentoContent {
@@ -422,6 +683,17 @@
   width: 100%;
   padding: 3rem;
   z-index: 2;
+  transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+}
+
+.bentoItem:hover .bentoContent {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .cardLabel {
@@ -432,6 +704,12 @@
   opacity: 0.8;
   display: block;
   margin-bottom: 1rem;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bentoItem:hover .cardLabel {
+  opacity: 1;
+  transform: none;
 }
 
 .bentoContent h3 {
@@ -443,6 +721,14 @@
   font-family: var(--font-outfit), sans-serif;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  text-align: left;
+}
+
+.bentoItem:hover .bentoContent h3 {
+  color: rgba(255, 255, 255, 0.95);
+  transform: none;
+  text-align: center;
 }
 
 .bentoLarge .bentoContent h3 {
@@ -450,10 +736,19 @@
 }
 
 .bentoContent p {
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   font-size: 0.95rem;
   color: rgba(255, 255, 255, 0.7);
   max-width: 320px;
   line-height: 1.6;
+  text-align: left;
+}
+
+.bentoItem:hover .bentoContent p {
+  color: rgba(255, 255, 255, 0.85);
+  transform: none;
+  text-align: center;
+  max-width: 100%;
 }
 
 .badgeRow {
@@ -508,11 +803,21 @@
   letter-spacing: 0.1em;
   color: var(--primary);
   text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.bentoItem:hover .bentoLink {
+  color: rgba(255, 255, 255, 0.9);
 }
 
 .bentoLink svg {
   width: 18px;
   height: 18px;
+  transition: all 0.5s ease;
+}
+
+.bentoItem:hover .bentoLink svg {
+  stroke: rgba(255, 255, 255, 0.9);
 }
 
 .bentoSideArrow {

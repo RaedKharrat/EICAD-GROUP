@@ -127,9 +127,10 @@ export default function ContactPage() {
                 <div className={`${styles.formItem} gsap-contact-item`}>
                   <select id="service" required defaultValue="">
                     <option value="" disabled>Select a service</option>
-                    <option value="architecture">Architecture Design</option>
+                    <option value="architecture">Architecture</option>
+                    <option value="construction">Construction</option>
                     <option value="interior">Interior Design</option>
-                    <option value="construction">Construction Management</option>
+                    <option value="renovation">Renovation</option>
                     <option value="consulting">Online Consulting</option>
                   </select>
                   <label htmlFor="service">Service Needed</label>
@@ -161,7 +162,11 @@ export default function ContactPage() {
               <div className={styles.infoList}>
                 <div className={`${styles.infoRow} gsap-contact-item`}>
                   <h3>LOCATION</h3>
-                  <p>128 RUE DE RIVOLI<br/>75001 PARIS, FRANCE</p>
+                  <p>
+                    TUNIS, TUNISIA<br />
+                    MONTRÉAL, CANADA<br />
+                    <span style={{ opacity: 0.65 }}>{siteConfig.locationsLine}</span>
+                  </p>
                 </div>
 
                 <div className={`${styles.infoRow} gsap-contact-item`}>
