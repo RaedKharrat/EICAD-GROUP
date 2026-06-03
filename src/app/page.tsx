@@ -204,27 +204,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Eco — coming soon */}
-      <section className={styles.ecoSection}>
-        <div className={styles.ecoBgWrapper}>
-          <Image
-            src="/ProjectsAssets/p7/cover.jpg"
-            alt="Eco Project Teaser"
-            fill
-            sizes="100vw"
-            className={styles.ecoBgImage}
-          />
-          <div className={styles.ecoOverlay}></div>
-        </div>
-        <div className="container">
-          <div className={styles.ecoCard}>
-            <span className={styles.ecoBadge}>{siteConfig.eco.badge}</span>
-            <h2 className={styles.ecoTitle}>{siteConfig.eco.title}</h2>
-            <p className={styles.ecoDesc}>{siteConfig.eco.description}</p>
-          </div>
-        </div>
-      </section>
-
       <CTASection
         preTitle="Start Your Project"
         title="Ready to <span style={{ fontWeight: '600' }}>transform</span><br/>your space?"

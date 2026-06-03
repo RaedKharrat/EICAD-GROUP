@@ -256,20 +256,30 @@ export default function ProjectsClient() {
             else if (i % 6 === 3) sizeClass = styles.cardWide;
             else if (i % 6 === 4 || i % 6 === 5) sizeClass = styles.cardHalf;
 
-            return (
-              <Link
-                key={p.id}
-                href={`/projects/${p.slug}`}
-                className={`js-proj-card ${styles.projectCard} ${sizeClass}`}
-              >
+            const cardClassName = `js-proj-card ${styles.projectCard} ${sizeClass}${
+              p.comingSoon ? ` ${styles.projectCardComingSoon}` : ""
+            }`;
+
+            const cardContent = (
+              <>
                 <div className={styles.imageWrapper}>
                   <Image
                     src={p.coverImage}
                     alt={p.title}
                     fill
-                    className={styles.projectImg}
+                    className={`${styles.projectImg}${
+                      p.comingSoon ? ` ${styles.projectImgBlurred}` : ""
+                    }`}
                   />
                   <div className={styles.imageOverlay} />
+                  {p.comingSoon && (
+                    <div className={styles.comingSoonOverlay}>
+                      <span className={styles.comingSoonBadge}>Coming soon</span>
+                      <p className={styles.comingSoonText}>
+                        Project details revealed at groundbreaking
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <div className={styles.projectInfo}>
                   <span className={styles.projectLabel}>{p.category}</span>
@@ -279,6 +289,28 @@ export default function ProjectsClient() {
                     <span className={styles.projectYear}>{p.year}</span>
                   </div>
                 </div>
+              </>
+            );
+
+            if (p.comingSoon) {
+              return (
+                <div
+                  key={p.id}
+                  className={cardClassName}
+                  aria-label={`${p.title} — coming soon`}
+                >
+                  {cardContent}
+                </div>
+              );
+            }
+
+            return (
+              <Link
+                key={p.id}
+                href={`/projects/${p.slug}`}
+                className={cardClassName}
+              >
+                {cardContent}
               </Link>
             );
           })}

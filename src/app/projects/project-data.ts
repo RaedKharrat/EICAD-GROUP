@@ -12,9 +12,27 @@ export type Project = {
   description: string;
   details: Array<{ label: string; value: string }>;
   highlights: string[];
+  comingSoon?: boolean;
 };
 
 export const projects: Project[] = [
+  {
+    id: "07",
+    slug: "eco-projects",
+    title: "Eco Projects",
+    category: "Eco",
+    location: "Tunisia",
+    year: "Coming soon",
+    span: "wide",
+    comingSoon: true,
+    coverImage: "/ProjectsAssets/p7/cover.jpg",
+    gallery: ["/ProjectsAssets/p7/detail-1.jpg"],
+    summary: "Sustainable architecture — details revealed at groundbreaking.",
+    description:
+      "Coming soon — project details revealed at groundbreaking.",
+    details: [{ label: "Status", value: "Coming soon" }],
+    highlights: [],
+  },
   {
     id: "01",
     slug: "glass-house",
@@ -195,34 +213,6 @@ export const projects: Project[] = [
       "High-contrast materials with rich textures",
       "Integrated entertainment and hospitality areas",
       "Contemporary lighting and architectural detailing",
-    ],
-  },
-  {
-    id: "07",
-    slug: "heritage-rework",
-    title: "Heritage Rework",
-    category: "Renovation",
-    location: "Tunis, Tunisia",
-    year: "2024",
-    span: "normal",
-    coverImage: "/ProjectsAssets/p7/cover.jpg",
-    gallery: [
-      "/ProjectsAssets/p7/detail-1.jpg",
-    ],
-    summary:
-      "A careful renovation that preserves heritage character while introducing modern performance.",
-    description:
-      "Heritage Rework revitalizes an existing Tunisian property by retaining its original structure and layering in contemporary utility. The project blends craftsmanship, sustainable upgrades, and a clear design language that honors the past.",
-    details: [
-      { label: "Program", value: "Renovation" },
-      { label: "Area", value: "370 m²" },
-      { label: "Client", value: "Historic homeowner" },
-      { label: "Completion", value: "2024" },
-    ],
-    highlights: [
-      "Sensitive restoration of existing volumes",
-      "Modern systems integrated discreetly",
-      "Balanced contrast between old and new materials",
     ],
   },
   {

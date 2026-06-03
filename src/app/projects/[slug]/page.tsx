@@ -32,14 +32,16 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 }
 
 export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+  return projects
+    .filter((project) => !project.comingSoon)
+    .map((project) => ({ slug: project.slug }));
 }
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
   const project = projects.find((project) => project.slug === slug);
 
-  if (!project) {
+  if (!project || project.comingSoon) {
     notFound();
   }
 
